@@ -1,0 +1,147 @@
+{
+  "source": "trace.jsonl, first 28 intervals, via trace2score.py's interval logic",
+  "stub": true,
+  "title": "Session e63e10f2",
+  "notes": [
+    {
+      "voice": "agent",
+      "seconds": 31.5,
+      "accent": false
+    },
+    {
+      "voice": "human",
+      "seconds": 312.0,
+      "accent": false
+    },
+    {
+      "voice": "agent",
+      "seconds": 18.9,
+      "accent": false
+    },
+    {
+      "voice": "human",
+      "seconds": 50.2,
+      "accent": false
+    },
+    {
+      "voice": "agent",
+      "seconds": 41.3,
+      "accent": false
+    },
+    {
+      "voice": "agent",
+      "seconds": 116.0,
+      "accent": true
+    },
+    {
+      "voice": "agent",
+      "seconds": 24.1,
+      "accent": true
+    },
+    {
+      "voice": "agent",
+      "seconds": 93.5,
+      "accent": true
+    },
+    {
+      "voice": "agent",
+      "seconds": 17.0,
+      "accent": true
+    },
+    {
+      "voice": "agent",
+      "seconds": 249.9,
+      "accent": true
+    },
+    {
+      "voice": "human",
+      "seconds": 985.4,
+      "accent": false
+    },
+    {
+      "voice": "agent",
+      "seconds": 4.6,
+      "accent": false
+    },
+    {
+      "voice": "agent",
+      "seconds": 0.1,
+      "accent": false
+    },
+    {
+      "voice": "agent",
+      "seconds": 18.1,
+      "accent": false
+    },
+    {
+      "voice": "agent",
+      "seconds": 3.7,
+      "accent": false
+    },
+    {
+      "voice": "agent",
+      "seconds": 0.0,
+      "accent": false
+    },
+    {
+      "voice": "agent",
+      "seconds": 1.4,
+      "accent": false
+    },
+    {
+      "voice": "agent",
+      "seconds": 10.6,
+      "accent": false
+    },
+    {
+      "voice": "agent",
+      "seconds": 0.1,
+      "accent": false
+    },
+    {
+      "voice": "agent",
+      "seconds": 7.1,
+      "accent": false
+    },
+    {
+      "voice": "agent",
+      "seconds": 0.0,
+      "accent": false
+    },
+    {
+      "voice": "agent",
+      "seconds": 0.5,
+      "accent": false
+    },
+    {
+      "voice": "agent",
+      "seconds": 0.0,
+      "accent": false
+    },
+    {
+      "voice": "agent",
+      "seconds": 45.2,
+      "accent": false
+    },
+    {
+      "voice": "agent",
+      "seconds": 1.6,
+      "accent": false
+    },
+    {
+      "voice": "agent",
+      "seconds": 0.1,
+      "accent": false
+    },
+    {
+      "voice": "agent",
+      "seconds": 0.0,
+      "accent": false
+    },
+    {
+      "voice": "agent",
+      "seconds": 4.8,
+      "accent": false
+    }
+  ]
+}

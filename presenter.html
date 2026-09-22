@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en" data-theme="day">
+<head>
+<meta charset="utf-8">
+<title>Presenter — Waiting time, waiting for time</title>
+<link rel="stylesheet" href="css/deck.css">
+<link rel="stylesheet" href="css/slides.css">
+<link rel="stylesheet" href="css/presenter.css">
+</head>
+
+<body>
+
+<div id="bar">
+  <span id="p-elapsed">00:00</span>
+  <span><span id="p-index">1</span><span class="of"> / </span><span id="p-total">17</span></span>
+  <span id="p-step"></span>
+  <span id="p-id"></span>
+</div>
+
+<div id="previews">
+  <div>
+    <p class="preview-label">now</p>
+    <div class="preview" id="current-preview"><div class="stage"></div></div>
+  </div>
+  <div>
+    <p class="preview-label">next</p>
+    <div class="preview" id="next-preview"><div class="stage"></div></div>
+  </div>
+</div>
+
+<div id="notes"></div>
+
+<div id="p-error" hidden></div>
+
+<script type="module" src="js/presenter.js"></script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+{
+  "hooks": {
+    "UserPromptSubmit": [{ "hooks": [{ "type": "command", "command": "jq -c '{t: now, event: .hook_event_name, session: .session_id}' >> \"$CLAUDE_PROJECT_DIR/trace.jsonl\"" }] }],
+    "Stop":             [{ "hooks": [{ "type": "command", "command": "jq -c '{t: now, event: .hook_event_name, session: .session_id}' >> \"$CLAUDE_PROJECT_DIR/trace.jsonl\"" }] }],
+    "Notification":     [{ "hooks": [{ "type": "command", "command": "jq -c '{t: now, event: .hook_event_name, session: .session_id}' >> \"$CLAUDE_PROJECT_DIR/trace.jsonl\"" }] }],
+    "PreToolUse":  [{ "matcher": "*", "hooks": [{ "type": "command", "command": "jq -c '{t: now, event: .hook_event_name, session: .session_id, tool: .tool_name}' >> \"$CLAUDE_PROJECT_DIR/trace.jsonl\"" }] }],
+    "PostToolUse": [{ "matcher": "*", "hooks": [{ "type": "command", "command": "jq -c '{t: now, event: .hook_event_name, session: .session_id, tool: .tool_name}' >> \"$CLAUDE_PROJECT_DIR/trace.jsonl\"" }] }]
+  }
+}

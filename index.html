@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en" data-theme="day">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Waiting time, waiting for time</title>
+
+<!-- Everything is local. This page makes no network request of any kind. -->
+<link rel="stylesheet" href="css/deck.css">
+<link rel="stylesheet" href="css/slides.css">
+
+<!--
+  ===========================================================================
+  Waiting time, waiting for time — Agentic Anonymous, KTH
+
+  This file is the whole content of the talk and the single source of truth
+  for it: the presenter window parses this same file for its slides and its
+  speaker notes, so there is no second copy to keep in sync.
+
+  Two conventions to know before editing:
+
+    <aside class="notes">   speaker notes. Never rendered on the deck.
+    data-motion="agent"     this slide cuts in with no fade (see deck.css).
+    data-steps="4"          the slide reveals in 4 keypresses; the figure
+                            module listens for 'step' and decides what appears.
+
+  All on-slide text is verbatim, either from the essay "Waiting time, waiting
+  for time" or from Paula's notes. [PAULA: …] marks text still to be written;
+  do not fill these in.
+  ===========================================================================
+-->
+</head>
+
+<body>
+
+<div id="stage-wrap">
+  <div id="stage">
+
+    <!-- 1 ─ Title -------------------------------------------------------
+         is-current is in the markup so the title page is visible before any
+         JavaScript runs. The engine re-applies it on every render anyway. -->
+    <section class="slide is-current" id="s1" data-motion="human">
+      <h1 class="title">Waiting time, waiting for time</h1>
+      <div class="title-rule"></div>
+      <p class="byline">
+        Paula Vasconcelos-Blomberg<br>
+        <span class="venue">Agentic Anonymous, KTH</span>
+      </p>
+      <aside class="notes">
+        <p>Let the room settle before starting.</p>
+      </aside>
+    </section>
+
+    <!-- 2 ─ Confession --------------------------------------------------
+         The counter is a time event, therefore red and mono. It renders a
+         stub value now; deck.bind() is the hook for live data later.      -->
+    <section class="slide" id="s2" data-motion="agent">
+      <p class="statement">Hi, I&rsquo;m Paula, and it&rsquo;s been
+        <span class="time" id="seconds-since-prompt">[N]</span> seconds
+        since my last prompt.</p>
+      <aside class="notes">
+        <p>The room will recognise this. Wait for the laugh.</p>
+        <p>The number is live-bindable: <code>deck.bind('seconds-since-prompt', fn)</code>.
+          Right now it reads a stub. If the live hook is wired by the night,
+          it is counting up while you speak.</p>
+      </aside>
+    </section>
+
+    <!-- 3 ─ Thesis ------------------------------------------------------ -->
+    <section class="slide" id="s3" data-motion="human">
+      <p class="statement">The parallels between making bread and AI agents
+        are illuminating</p>
+      <p class="gloss ink">especially where they break.</p>
+      <aside class="notes">
+        <p>The essay's own phrasing: "the processes are analogous in ways that
+          make the differences illuminating".</p>
+        <p>Say what the talk will do: two narratives, then a box, then what
+          fills the waiting.</p>
+      </aside>
+    </section>
+
+    <!-- 3b ─ Making bread ------------------------------------------------
+         A schedule, not a list: what is done, and the wait that follows it.
+         The waits are rubrics — red, in the same serif as the action, the way
+         a missal prints its instructions. Bread is human, so it fades in.
+         The id is s3b rather than a renumbering, so nothing that refers to
+         s4…s17 (slides.css, figures/registry.js, main.js) has to change.    -->
+    <section class="slide" id="s3b" data-motion="human">
+      <ol class="schedule">
+        <li><span class="do">wake up levain</span><span class="wait">wait 12 hours</span></li>
+        <li><span class="do">make dough and fold</span><span class="wait">wait half an hour</span></li>
+        <li><span class="do">fold</span><span class="wait">wait half an hour</span></li>
+        <li><span class="do">fold</span><span class="wait">wait half an hour</span></li>
+        <li><span class="do">fold</span><span class="wait">wait half an hour</span></li>
+        <li><span class="do">bulk fermentation</span><span class="wait">wait 2 hours</span></li>
+        <li><span class="do">bake</span><span class="wait">wait 45 minutes</span></li>
+      </ol>
+      <aside class="notes">
+        <p>[PAULA: notes for the bread schedule]</p>
+      </aside>
+    </section>
+
+    <!-- 3c ─ Operating agents --------------------------------------------
+         Same vocabulary as the bread slide, different shape. My thread runs
+         across; every switch sprouts a line at a right angle, text rotated.
+         The words are edited here; figures/scatter.js only draws them.
+         data-steps = number of branches (one keypress each).                -->
+    <section class="slide" id="s3c" data-motion="agent" data-steps="5">
+      <div class="region" id="region-scatter">
+        <ol class="sequence">
+          <li>prompt agent 1</li>
+          <li class="wait">wait</li>
+          <li>accept</li>
+          <li class="switch">switch
+            <ol><li>prompt agent 2</li><li>accept</li><li>prompt agent 2</li></ol></li>
+          <li>check agent 1</li>
+          <li>accept</li>
+          <li class="switch">switch
+            <ol><li>email</li></ol></li>
+          <li>check agent 1</li>
+          <li>still working</li>
+          <li class="wait">wait 15 s</li>
+          <li class="switch">switch
+            <ol><li>prompt agent 3</li></ol></li>
+          <li class="switch">switch
+            <ol><li>report</li></ol></li>
+          <li class="switch">switch
+            <ol><li>teams</li></ol></li>
+        </ol>
+      </div>
+      <aside class="notes">
+        <p>Five presses, one branch each: agent 2, email, agent 3, report, Teams.</p>
+        <p>[PAULA: notes for the agent sequence]</p>
+      </aside>
+    </section>
+
+    <!-- 4 ─ The scene ---------------------------------------------------
+         Human text, agent figure: the sentence fades, the score does not. -->
+    <section class="slide" id="s4" data-motion="human">
+      <p class="statement">A cycle of this shape &mdash; with different
+        combinations of checking, starting something, stopping &mdash;
+        happened many times, more than I cared to count</p>
+      <div class="region agent" id="region-score-scene"></div>
+      <aside class="notes">
+        <p>Read the agent narrative from the essay: the thorough description,
+          the plan that takes more than a minute, staying for 30 seconds, the
+          second session in the browser, back to the first, still working,
+          another 15 seconds, a third tab. Then Teams, to avoid the
+          frustration of starting yet another thing.</p>
+        <p>Then point at the staff: this is that session, written out. Agent
+          on top, me underneath. Long notes are long waits.</p>
+      </aside>
+    </section>
+
+    <!-- 5 ─ The box -----------------------------------------------------
+         Four corners, one per keypress, Agent last and abrupt.            -->
+    <section class="slide" id="s5" data-motion="human" data-steps="4">
+      <div class="region" id="region-box"></div>
+      <aside class="notes">
+        <p>Two axes: how long the wait is, and how legible the process is.</p>
+        <p>Hsieh punched a clock every hour for a year — each wait short, and
+          perfectly legible; you know exactly what is coming.</p>
+        <p>Bread: long, and legible. You have a model, so you can set an alarm
+          and really leave.</p>
+        <p>Blood test results: long, and illegible. You have no model of the
+          process at all — but it is long enough to release you.</p>
+        <p>The agent: short, and illegible. The only corner with neither.</p>
+      </aside>
+    </section>
+
+    <!-- 6 ─ What the box says ------------------------------------------- -->
+    <section class="slide" id="s6" data-motion="human">
+      <div class="col-text">
+        <p class="statement">
+          <span class="line">Shortness produces captivity.</span>
+          <span class="line">Illegibility produces scatter &amp; anxiety.</span>
+        </p>
+      </div>
+      <div class="col-figure">
+        <div class="region agent" id="region-box-mini"></div>
+        <p class="caption">The agent gets both.</p>
+      </div>
+      <aside class="notes">
+        <p>From the essay: "The wait is too short to leave. And being of
+          unknown length makes it too expensive."</p>
+        <p>Even an indeterminate wait that is known to be long releases me. I
+          can log off. Here I have to stay reachable — so whatever I fill the
+          time with has to be easy to abandon, which means it can't be worth
+          entering fully.</p>
+        <p>Heidegger: the hammer withdraws while it hammers. Here the waiting
+          is constitutive of the tool's operation, and it is the waiting that
+          makes the work break down into view.</p>
+      </aside>
+    </section>
+
+    <!-- 7 ─ Variable interval ------------------------------------------- -->
+    <section class="slide" id="s7" data-motion="agent">
+      <!-- The arrow is a machine mark, so it is set in the mono face rather
+           than in a serif fallback that would sit heavier than the text. -->
+      <p class="statement long">Variable interval <span class="mono">&rarr;</span>
+        persistent checking, hard to extinguish.</p>
+      <div class="region agent" id="region-cumulative-record"></div>
+      <aside class="notes">
+        <p>The schedule that produces the most persistent behaviour is the one
+          you cannot predict. This is not a metaphor; it is the shape of the
+          reinforcement.</p>
+        <p>This is my own log: every time I switched back to a window with an
+          agent in it, over one hour. The staircase never flattens.</p>
+      </aside>
+    </section>
+
+    <!-- 8 ─ Queuing ----------------------------------------------------- -->
+    <section class="slide" id="s8" data-motion="human">
+      <p class="kicker">Waiting</p>
+      <p class="statement short">queuing is the allocation of scarce access</p>
+      <aside class="notes">
+        <p>Barry Schwartz, "Queues, Priorities, and Social Process". Queues can
+          be comprised of anything — from people to tasks.</p>
+        <p>He invites us to view social systems as queuing networks, and to
+          look at the demands queues make on those who <em>serve</em> them,
+          not only on those who wait.</p>
+        <p>By working with agents I start new tasks, in part because it is so
+          frictionless.</p>
+      </aside>
+    </section>
+
+    <!-- 9 ─ Bottleneck --------------------------------------------------- -->
+    <section class="slide" id="s9" data-motion="human">
+      <p class="statement long">I start new activities that create a queue
+        where I am the bottleneck.</p>
+      <aside class="notes">
+        <p>Schwartz's unintuitive point: organisations create efficiency by
+          introducing bottlenecks — the secretary triaging access to the
+          bureaucrat who makes the consequential decisions.</p>
+        <p>I "increase my productivity" by generating new branches of tasks. So
+          I can be thought of as a queuing network, and the queuing of tasks is
+          the task of allocating scarce access to me.</p>
+        <p>And the punchline, which may want its own slide:
+          <strong>By waiting, I create new opportunities for waiting.</strong></p>
+      </aside>
+    </section>
+
+    <!-- 10 ─ Attention --------------------------------------------------- -->
+    <section class="slide" id="s10" data-motion="human">
+      <p class="kicker">What fills the time of waiting?</p>
+      <p class="statement">Waiting degrades attention to the thing being
+        waited for</p>
+      <aside class="notes">
+        <p>…and interferes with the cognitive processes responsible for
+          problem-solving.</p>
+      </aside>
+    </section>
+
+    <!-- 11 ─ Fifteen seconds --------------------------------------------- -->
+    <section class="slide" id="s11" data-motion="human">
+      <p class="kicker rubric">15 s</p>
+      <p class="statement short">Fifteen seconds isn&rsquo;t worth it.</p>
+      <p class="placeholder">[PAULA: 1968 vs 2026 — to expand]</p>
+      <aside class="notes">
+        <p>Robert B. Miller, 1968, "Response time in man-computer
+          conversational transactions". Surprising that this was already being
+          thought about then.</p>
+        <p>Roughly 2.3 to 3.5 seconds registers as "present"; after that,
+          everything is "later". Past 15 seconds, attention to focused
+          problem-solving degrades and diverts to other tasks. It also curbs
+          exploration — long waits make us satisfied with the first result.</p>
+        <p>Miller's engineer wrote the program and is invested in its working.
+          That is me running PhD simulations — the horror of a long run that
+          ended in failure. With the agent the stakes are dislocated; there is
+          less of "me" in there, so I barely wait 15 seconds before moving on.</p>
+      </aside>
+    </section>
+
+    <!-- 12 ─ Achievability ------------------------------------------------ -->
+    <section class="slide" id="s12" data-motion="human">
+      <p class="statement long">Achievability and goal-proximity bias the
+        choice of the next course of action</p>
+      <aside class="notes">
+        <p>Neumann and Allport, "Beyond capacity: a functional view of
+          attention". Attention is not a scarce resource to be rationed; it is
+          selection for activities that maintain behavioural coherence,
+          because there is always more to do than can be done.</p>
+        <p>Action selection is primed for what looks achievable <em>now</em>.
+          So the next thing is also in front of the PC. It is another agent.</p>
+      </aside>
+    </section>
+
+    <!-- 13 ─ Frictionless -------------------------------------------------
+         The real focus log. Red marks only the 15 s reference.            -->
+    <section class="slide" id="s13" data-motion="agent">
+      <p class="statement long">switching between different activities often
+        requires just as much effort as continuing to do one and the same
+        activity</p>
+      <div class="region agent" id="region-focus-timeline"></div>
+      <aside class="notes">
+        <p>Jelle Bruineberg, "Adversarial inference: predictive minds in the
+          attention economy". "Adversarial" refers to platforms that model
+          users to keep them there — but here nobody needs to model us.
+          Frictionless switching plus undefined waits produces the same
+          dynamics without anybody modelling us.</p>
+        <p>This is my actual log, one hour, one record per switch of the
+          frontmost window. The red ruler is 15 seconds, to scale.</p>
+      </aside>
+    </section>
+
+    <!-- 14 ─ Rest? -------------------------------------------------------- -->
+    <section class="slide" id="s14" data-motion="human">
+      <p class="kicker">Rest? No.</p>
+      <p class="statement long">a more tyrannical version of Taylor&rsquo;s
+        manager has been internalized by me to such an extent that no one
+        needs to oversee my use of time</p>
+      <aside class="notes">
+        <p>Taylorism argued against worker-controlled idle time in favour of
+          managerially controlled idle time — it prescribed rest as much as it
+          prescribed efficient work, so long as management decided when.</p>
+        <p>Looking at my malaise over a few idle seconds: this might have been
+          one of the great achievements of productivity culture in the 20th
+          century.</p>
+      </aside>
+    </section>
+
+    <!-- 15 ─ Delayed Parousia --------------------------------------------- -->
+    <section class="slide" id="s15" data-motion="human">
+      <p class="kicker">Delayed Parousia</p>
+      <p class="statement">The reward of finishing a task is being able to
+        start a new one.</p>
+      <p class="placeholder">[PAULA: ending]</p>
+      <aside class="notes">
+        <p>The promise: AI will make us productive and give us leisure, in
+          Russell's sense. It won't replace us, it will free us.</p>
+        <p>Godot never comes, and he can't ever come — the play would end.
+          Didi and Gogo are trapped in time, replaying the same sequences like
+          liturgy, the way the Church built daily ritual around the indefinite
+          wait for the Messiah.</p>
+        <p>The small acts, the little recursions, are what make the large
+          arrival impossible by perpetually postponing it. Relief never comes
+          because recursion has no in-built stop mechanism.</p>
+        <p>Once the ending is written, delete whichever of the two lines on
+          this slide is no longer wanted.</p>
+      </aside>
+    </section>
+
+    <!-- 16 ─ Coda ---------------------------------------------------------- -->
+    <section class="slide" id="s16" data-motion="agent">
+      <p class="kicker rubric">the score of this talk</p>
+      <div class="region full agent" id="region-score-talk"></div>
+      <aside class="notes">
+        <p>This is the trace of the session that built this deck, rendered as a
+          score. Treble is the agent, bass is me. The accents are the moments
+          it stopped to ask permission.</p>
+        <p>Audio is not built yet. Offer to play it afterwards.</p>
+      </aside>
+    </section>
+
+    <!-- 17 ─ Blank ---------------------------------------------------------- -->
+    <section class="slide" id="s17" data-motion="human">
+      <aside class="notes">
+        <p>Stop talking. Let it sit.</p>
+      </aside>
+    </section>
+
+    <!-- Chrome lives inside the stage so it scales with the slide and sits in
+         the paper's corner, not the viewport's, when the stage is letterboxed. -->
+    <div id="clock" hidden>00:00</div>
+    <div id="keyhint" hidden>← → space · f fullscreen · b blank · d night · c clock · p presenter</div>
+
+  </div><!-- /#stage -->
+</div>
+
+<div id="blank" hidden></div>
+
+<!-- Opened from the Finder rather than from a server, the deck cannot work:
+     browsers refuse to load ES modules over file://, so nothing would run and
+     the page would simply sit there. Say so, rather than failing silently.
+     This script is inline on purpose — an external one would not load either. -->
+<div id="served-warning" hidden>
+  <p><strong>This deck has to be served, not opened as a file.</strong></p>
+  <p class="how">cd "<span id="served-dir"></span>"<br>python3 -m http.server 8000</p>
+  <p>Then open <span class="url">http://localhost:8000/</span></p>
+  <p class="why">Browsers block JavaScript modules on <code>file://</code>, so the
+    slide engine never starts.</p>
+</div>
+<script>
+  if (location.protocol === 'file:') {
+    document.getElementById('served-warning').hidden = false;
+    document.getElementById('served-dir').textContent =
+      decodeURIComponent(location.pathname.replace(/\/index\.html$/, ''));
+  }
+</script>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

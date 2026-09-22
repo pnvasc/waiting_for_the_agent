@@ -1,0 +1,405 @@
+/* ===========================================================================
+   Waiting time, waiting for time — deck foundation
+   ---------------------------------------------------------------------------
+   Three rules govern everything in this file.
+
+   COLOUR.  Warm paper, near-black ink, and exactly one accent: a liturgical
+   red used the way rubrics were used in missals — for instructions and time
+   events only. Never decorative. On this deck the red is allowed on: the
+   [N] counter, the elapsed clock, timestamps and duration labels, the 15 s
+   reference line, accents marking an interruption, and [PAULA: …] placeholders.
+
+   TYPE.  EB Garamond is Paula's voice. IBM Plex Mono is anything the machine
+   produced: timestamps, log lines, axis and data labels, kickers, counters.
+   If a string came out of a computer it is set in mono. That is the whole rule.
+
+   MOTION.  .human fades slowly. .agent appears on the frame, with no easing
+   and no transition at all. Slide-to-slide transitions follow the same split
+   via [data-motion] on the section.
+   =========================================================================== */
+
+@import url('../fonts/fonts.css');
+
+/* --- tokens --------------------------------------------------------------- */
+
+:root {
+  --paper:   #f7f4ee;   /* warm off-white */
+  --ink:     #17150f;   /* near-black */
+  --ink-2:   #55514a;   /* secondary — labels and notes, never argument text */
+  --ink-3:   #a09889;   /* hairlines */
+  --rubric:  #8e1b13;   /* liturgical red */
+
+  --serif: 'EB Garamond', Georgia, serif;
+  --mono:  'IBM Plex Mono', ui-monospace, Menlo, monospace;
+
+  /* The stage is a fixed 1600 x 900 canvas. Every size below is in stage
+     pixels, so proportions are identical on a laptop and on a 4K projector. */
+  --stage-w: 1600px;
+  --stage-h: 900px;
+
+  --fade: 900ms cubic-bezier(.4, 0, .2, 1);
+}
+
+:root[data-theme='night'] {
+  --paper:  #14130f;
+  --ink:    #ece7dc;
+  --ink-2:  #928b7e;
+  --ink-3:  #4a463d;
+  --rubric: #c2544a;    /* lifted so it still reads as red, not brown, in the dark */
+}
+
+/* --- page ----------------------------------------------------------------- */
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  background: var(--paper);
+  color: var(--ink);
+  overflow: hidden;
+  /* The theme switch is the one page-wide fade; everything else is per-element. */
+  transition: background-color var(--fade), color var(--fade);
+}
+
+body {
+  font-family: var(--serif);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* --- stage ---------------------------------------------------------------- */
+
+#stage-wrap {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+
+/* Scaled by a single transform in engine.js. Nothing here reflows on resize. */
+#stage {
+  position: relative;
+  width: var(--stage-w);
+  height: var(--stage-h);
+  transform-origin: center center;
+  background: var(--paper);
+}
+
+/* --- slides --------------------------------------------------------------- */
+
+.slide {
+  position: absolute;
+  inset: 0;
+  padding: 104px 150px 96px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity var(--fade), visibility 0s linear var(--fade);
+}
+
+.slide.is-current {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: opacity var(--fade), visibility 0s;
+}
+
+/* Agent material does not ease in. It is simply there, on the next frame. */
+.slide[data-motion='agent'],
+.slide[data-motion='agent'].is-current {
+  transition: none;
+}
+
+/* Speaker notes live in the markup so index.html stays the single source of
+   truth; the presenter window reads them from here. They never render. */
+.notes { display: none; }
+
+/* --- the two voices ------------------------------------------------------- */
+
+.human { transition: opacity var(--fade); }
+.agent { transition: none !important; }
+
+/* Steps start hidden and are revealed one keypress at a time. Visibility is
+   kept off the transition for .agent so it cannot smear. */
+[data-step] { opacity: 0; }
+[data-step].is-shown { opacity: 1; }
+
+/* --- type ----------------------------------------------------------------- */
+
+/* The kicker: the small mono line that names what a slide is doing. It is the
+   printed running head of the page. */
+.kicker {
+  font-family: var(--mono);
+  font-size: 19px;
+  font-weight: 400;
+  letter-spacing: .16em;
+  text-transform: lowercase;
+  font-variant-caps: all-small-caps;
+  color: var(--ink-2);
+  margin: 0 0 54px;
+}
+
+.kicker.rubric { color: var(--rubric); }
+
+/* The one sentence a slide exists to carry. */
+.statement {
+  font-family: var(--serif);
+  font-size: 62px;
+  line-height: 1.26;
+  font-weight: 400;
+  letter-spacing: -.005em;
+  margin: 0;
+  max-width: 24ch;
+  text-wrap: balance;
+}
+
+.statement.long { font-size: 50px; max-width: 30ch; }
+.statement.short { font-size: 76px; max-width: 18ch; }
+
+/* Two sentences that are one idea (slide 6). Set as separate lines of verse,
+   not as a list — no markers, no hanging indent. */
+.statement .line { display: block; }
+.statement .line + .line { margin-top: .34em; }
+
+/* A second, quieter line under a statement: the qualification, the aside, the
+   "especially…". Smaller than the statement, far larger than body text — the
+   book equivalent is a gloss, not a subtitle. Add .ink when it carries as much
+   weight as the statement and should not recede. */
+.gloss {
+  font-family: var(--serif);
+  font-size: 42px;
+  line-height: 1.34;
+  font-weight: 400;
+  color: var(--ink-2);
+  margin: 0;
+  max-width: 34ch;
+  text-wrap: balance;
+}
+
+.gloss.ink { color: var(--ink); }
+.gloss.small { font-size: 30px; max-width: 42ch; }
+
+.statement + .gloss { margin-top: .42em; }
+
+.caption {
+  font-family: var(--serif);
+  font-size: 26px;
+  font-variant-caps: all-small-caps;
+  letter-spacing: .08em;
+  color: var(--ink-2);
+  margin: 34px 0 0;
+}
+
+/* A schedule: what is done, and how long to wait after it (the bread slide).
+   Two columns on a shared baseline, no list markers. The action is the human
+   voice; the wait is a rubric — red, same serif, a size down. */
+.schedule {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: max-content max-content;
+  column-gap: 96px;
+  row-gap: 20px;
+  align-items: baseline;
+}
+
+.schedule li { display: contents; }
+
+.schedule .do {
+  font-family: var(--serif);
+  font-size: 46px;
+  line-height: 1.2;
+}
+
+.schedule .wait {
+  font-family: var(--serif);
+  font-size: 34px;
+  line-height: 1.2;
+  color: var(--rubric);
+}
+
+/* Anything the machine produced. */
+.mono { font-family: var(--mono); font-size: .86em; letter-spacing: -.01em; }
+
+/* Time events: counters, durations, timestamps. Red, and only here. */
+.time {
+  font-family: var(--mono);
+  font-weight: 500;
+  color: var(--rubric);
+  letter-spacing: -.02em;
+}
+
+/* Unfilled content. Deliberately loud; it is meant to be noticed in rehearsal. */
+.placeholder {
+  display: inline-block;
+  align-self: flex-start;     /* shrink to the text; slides are flex columns */
+  font-family: var(--mono);
+  font-size: 24px;
+  color: var(--rubric);
+  border: 1px solid currentColor;
+  padding: .45em .8em;
+  letter-spacing: .01em;
+}
+
+.statement + .placeholder { margin-top: 56px; }
+
+/* --- reserved regions ----------------------------------------------------- */
+
+/* Empty containers with stable ids. Each holds its space from the start, so
+   nothing on the slide moves when the real figure lands. */
+.region {
+  position: relative;
+  width: 100%;
+  margin-top: 56px;
+}
+
+.region.full { margin-top: 0; flex: 1; }
+
+.region svg { display: block; width: 100%; height: 100%; overflow: visible; }
+
+/* Fine-line drawing: one hairline weight for structure, one for data. */
+.region .rule   { stroke: var(--ink-3); stroke-width: 1; fill: none; }
+.region .stroke { stroke: var(--ink);   stroke-width: 1.4; fill: none; }
+.region .fill   { fill: var(--ink); }
+.region .mark   { stroke: var(--rubric); stroke-width: 1.4; fill: none; }
+.region .mark-fill { fill: var(--rubric); }
+
+.region text {
+  font-family: var(--mono);
+  font-size: 15px;
+  fill: var(--ink-2);
+  letter-spacing: .02em;
+}
+
+.region text.label  { fill: var(--ink); font-size: 18px; }
+.region text.axis   { font-variant-caps: all-small-caps; letter-spacing: .14em; }
+.region text.rubric { fill: var(--rubric); }
+
+/* The human voice inside a drawing (the agent slide): the same serif as the
+   statements, not the mono of data labels, because these are my actions. */
+.region text.voice { font-family: var(--serif); font-size: 28px; letter-spacing: 0; fill: var(--ink); }
+.region text.voice.branch { font-size: 24px; }
+.region text.voice.rubric { fill: var(--rubric); }
+.region .sep { fill: var(--ink-3); }
+
+/* A region that carries its own source markup keeps it for the figure to read
+   and never shows it: the drawing replaces it. */
+.region > ol.sequence { display: none; }
+
+/* Placeholder shown while a region has no data yet. */
+.region .awaiting {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-family: var(--mono);
+  font-size: 18px;
+  color: var(--rubric);
+}
+
+/* --- title slide ---------------------------------------------------------- */
+
+.title {
+  font-family: var(--serif);
+  font-size: 104px;
+  line-height: 1.08;
+  font-weight: 400;
+  letter-spacing: -.015em;
+  margin: 0;
+  max-width: 18ch;
+}
+
+.byline {
+  font-family: var(--mono);
+  font-size: 20px;
+  letter-spacing: .1em;
+  color: var(--ink-2);
+  margin: 72px 0 0;
+  line-height: 1.9;
+}
+
+.byline .venue { color: var(--ink-3); }
+
+/* A single hairline under the title, the way a title page carries a rule. */
+.title-rule {
+  width: 240px;
+  height: 1px;
+  background: var(--ink-3);
+  margin: 56px 0 0;
+}
+
+/* --- chrome: clock and blank ---------------------------------------------- */
+
+/* Off by default, toggled with C. A time event, therefore red. */
+#clock {
+  position: absolute;
+  right: 44px;
+  bottom: 38px;
+  font-family: var(--mono);
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: .04em;
+  color: var(--rubric);
+}
+
+#clock[hidden] { display: none; }
+
+/* B blanks the screen. Paper in day, true black in night — a dim room wants
+   the projector to go dark, a lit one wants it to go quiet. */
+#blank {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: var(--paper);
+}
+
+:root[data-theme='night'] #blank { background: #000; }
+#blank[hidden] { display: none; }
+
+/* --- help ----------------------------------------------------------------- */
+
+/* Shown on the title slide only, and faintly. It is for Paula, in rehearsal. */
+#keyhint {
+  position: absolute;
+  left: 150px;
+  bottom: 38px;
+  font-family: var(--mono);
+  font-size: 14px;
+  letter-spacing: .08em;
+  color: var(--ink-3);
+  transition: opacity var(--fade);
+}
+
+#keyhint[hidden] { display: none; }
+
+/* --- "this has to be served" ------------------------------------------------
+   Shown only when the page was opened as a file. Set in mono, because it is a
+   machine's complaint, not part of the talk. */
+
+#served-warning {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  padding: 0 8vw;
+  background: var(--paper);
+  font-family: var(--mono);
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--ink-2);
+}
+
+#served-warning[hidden] { display: none; }
+#served-warning strong { color: var(--rubric); font-weight: 500; }
+#served-warning .how { color: var(--ink); margin: 18px 0; }
+#served-warning .url { color: var(--rubric); }
+#served-warning .why { color: var(--ink-3); margin-top: 18px; }

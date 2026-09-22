@@ -1,0 +1,9 @@
+# macOS
+.DS_Store
+
+# Per-machine Claude Code settings (the shared hooks in .claude/settings.json are tracked)
+.claude/settings.local.json
+
+# Python
+__pycache__/
+*.pyc

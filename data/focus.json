@@ -1,0 +1,335 @@
+{
+  "source": "focus.jsonl, one continuous logging run (82 switches over 60 minutes)",
+  "stub": true,
+  "t0": 1790066686,
+  "events": [
+    {
+      "t": 0,
+      "app": "Terminal"
+    },
+    {
+      "t": 7,
+      "app": "Microsoft Outlook"
+    },
+    {
+      "t": 96,
+      "app": "Google Chrome"
+    },
+    {
+      "t": 393,
+      "app": "Code"
+    },
+    {
+      "t": 493,
+      "app": "Google Chrome"
+    },
+    {
+      "t": 497,
+      "app": "MSTeams"
+    },
+    {
+      "t": 498,
+      "app": "Code"
+    },
+    {
+      "t": 527,
+      "app": "MSTeams"
+    },
+    {
+      "t": 567,
+      "app": "Microsoft Outlook"
+    },
+    {
+      "t": 581,
+      "app": "Google Chrome"
+    },
+    {
+      "t": 595,
+      "app": "Code"
+    },
+    {
+      "t": 609,
+      "app": "Google Chrome"
+    },
+    {
+      "t": 680,
+      "app": "Code"
+    },
+    {
+      "t": 727,
+      "app": "Google Chrome"
+    },
+    {
+      "t": 762,
+      "app": "Code"
+    },
+    {
+      "t": 896,
+      "app": "Finder"
+    },
+    {
+      "t": 918,
+      "app": "Code"
+    },
+    {
+      "t": 1020,
+      "app": "Google Chrome"
+    },
+    {
+      "t": 1321,
+      "app": "Claude"
+    },
+    {
+      "t": 1322,
+      "app": "Code"
+    },
+    {
+      "t": 1344,
+      "app": "Google Chrome"
+    },
+    {
+      "t": 1409,
+      "app": "Microsoft Outlook"
+    },
+    {
+      "t": 1412,
+      "app": "Google Chrome"
+    },
+    {
+      "t": 1415,
+      "app": "Code"
+    },
+    {
+      "t": 1494,
+      "app": "Google Chrome"
+    },
+    {
+      "t": 1518,
+      "app": "MSTeams"
+    },
+    {
+      "t": 1636,
+      "app": "Google Chrome"
+    },
+    {
+      "t": 1644,
+      "app": "Code"
+    },
+    {
+      "t": 1682,
+      "app": "Google Chrome"
+    },
+    {
+      "t": 1705,
+      "app": "MSTeams"
+    },
+    {
+      "t": 1720,
+      "app": "Google Chrome"
+    },
+    {
+      "t": 1773,
+      "app": "Code"
+    },
+    {
+      "t": 1835,
+      "app": "Google Chrome"
+    },
+    {
+      "t": 1871,
+      "app": "Microsoft Outlook"
+    },
+    {
+      "t": 1873,
+      "app": "Google Chrome"
+    },
+    {
+      "t": 1875,
+      "app": "Code"
+    },
+    {
+      "t": 1986,
+      "app": "Google Chrome"
+    },
+    {
+      "t": 2009,
+      "app": "MSTeams"
+    },
+    {
+      "t": 2013,
+      "app": "Google Chrome"
+    },
+    {
+      "t": 2019,
+      "app": "Microsoft Outlook"
+    },
+    {
+      "t": 2021,
+      "app": "MSTeams"
+    },
+    {
+      "t": 2042,
+      "app": "Claude"
+    },
+    {
+      "t": 2044,
+      "app": "Code"
+    },
+    {
+      "t": 2153,
+      "app": "Notion"
+    },
+    {
+      "t": 2167,
+      "app": "MSTeams"
+    },
+    {
+      "t": 2180,
+      "app": "Google Chrome"
+    },
+    {
+      "t": 2183,
+      "app": "Microsoft Outlook"
+    },
+    {
+      "t": 2189,
+      "app": "MSTeams"
+    },
+    {
+      "t": 2191,
+      "app": "Claude"
+    },
+    {
+      "t": 2193,
+      "app": "Code"
+    },
+    {
+      "t": 2256,
+      "app": "Google Chrome"
+    },
+    {
+      "t": 2376,
+      "app": "MSTeams"
+    },
+    {
+      "t": 2378,
+      "app": "Microsoft Outlook"
+    },
+    {
+      "t": 2382,
+      "app": "Code"
+    },
+    {
+      "t": 2512,
+      "app": "Google Chrome"
+    },
+    {
+      "t": 2533,
+      "app": "Code"
+    },
+    {
+      "t": 2890,
+      "app": "MSTeams"
+    },
+    {
+      "t": 2950,
+      "app": "Google Chrome"
+    },
+    {
+      "t": 2977,
+      "app": "MSTeams"
+    },
+    {
+      "t": 2981,
+      "app": "Google Chrome"
+    },
+    {
+      "t": 3009,
+      "app": "Code"
+    },
+    {
+      "t": 3013,
+      "app": "MSTeams"
+    },
+    {
+      "t": 3019,
+      "app": "Google Chrome"
+    },
+    {
+      "t": 3066,
+      "app": "MSTeams"
+    },
+    {
+      "t": 3075,
+      "app": "Google Chrome"
+    },
+    {
+      "t": 3080,
+      "app": "Code"
+    },
+    {
+      "t": 3158,
+      "app": "Google Chrome"
+    },
+    {
+      "t": 3239,
+      "app": "MSTeams"
+    },
+    {
+      "t": 3304,
+      "app": "Google Chrome"
+    },
+    {
+      "t": 3318,
+      "app": "Code"
+    },
+    {
+      "t": 3386,
+      "app": "Google Chrome"
+    },
+    {
+      "t": 3417,
+      "app": "Code"
+    },
+    {
+      "t": 3430,
+      "app": "Google Chrome"
+    },
+    {
+      "t": 3444,
+      "app": "MSTeams"
+    },
+    {
+      "t": 3457,
+      "app": "zotero"
+    },
+    {
+      "t": 3460,
+      "app": "Google Chrome"
+    },
+    {
+      "t": 3467,
+      "app": "Code"
+    },
+    {
+      "t": 3538,
+      "app": "Notion"
+    },
+    {
+      "t": 3570,
+      "app": "Google Chrome"
+    },
+    {
+      "t": 3576,
+      "app": "MSTeams"
+    },
+    {
+      "t": 3577,
+      "app": "Notion"
+    },
+    {
+      "t": 3595,
+      "app": "Code"
+    }
+  ]
+}
