@@ -76,7 +76,7 @@ outside:
 ```js
 deck.on('change', ({ index, id, stepIndex, stepCount }) => { … });
 deck.goto(7);
-deck.bind('seconds-since-prompt', () => secondsSinceLastPrompt());
+deck.bind('minutes-since-prompt', () => minutesSincePrompt());
 ```
 
 Every intended extension point is marked `// hook:` in the source.
@@ -90,7 +90,7 @@ directory, marked `"stub": true` and carrying a `"source"` field:
 |---|---|---|
 | `score.json` | `trace.jsonl`, first 28 intervals, via `trace2score.py`'s mapping | slides 4, 16 |
 | `focus.json` | `focus.jsonl`, one continuous 60-minute run | slide 13 |
-| `checks.json` | the same run: every switch back to an agent window | slides 2, 7 |
+| `checks.json` | the same run: every switch back to an agent window | slide 7 |
 
 Replacing a stub with a full processed run is a file swap; no code changes.
 

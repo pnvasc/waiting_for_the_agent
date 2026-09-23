@@ -101,8 +101,8 @@ export class Deck {
      slide change and on an internal tick, and its return value becomes the
      element's text.
 
-     hook: this is where a live "seconds since my last prompt" reader attaches.
-     deck.bind('seconds-since-prompt', () => secondsSinceLastPrompt()); */
+     hook: slide 2's "minutes since my last prompt" attaches here (main.js).
+     deck.bind('minutes-since-prompt', () => minutesSincePrompt()); */
   bind(id, fn) {
     this._bindings.set(id, fn);
     if (!this._bindTimer) this._bindTimer = setInterval(() => this._applyBindings(), 1000);

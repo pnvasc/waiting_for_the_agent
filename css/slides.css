@@ -24,16 +24,18 @@
 #s4 .statement { font-size: 40px; max-width: 38ch; }
 #s4 #region-score-scene { height: 340px; margin-top: 44px; }
 
-/* 5 — The box. The diagram is the slide; there is no prose. */
-#s5 { justify-content: center; padding: 70px 150px; }
-#s5 #region-box { height: 100%; margin-top: 0; }
+/* 5 — The box. After the four corners, one more press fades in what the box
+   says, above it. The sentence's space is held from the start, so the box
+   does not move when it arrives. The two sentences are one idea: one line
+   each, no list. */
+#s5 { justify-content: flex-start; padding: 70px 150px; }
+#s5 .statement { font-size: 44px; max-width: 34ch; }
+#s5 #region-box { flex: 1; min-height: 0; margin-top: 28px; }
 
-/* 6 — What the box says. The two sentences are one idea, so they get the full
-   measure and sit on one line each; the box returns underneath them, centred.
-   Its container is sized to the mini geometry in box.js (480 x 430) so the
-   drawing renders at about 1:1 and its labels stay readable from the back. */
+/* 6 — The box returns small, with only the Agent corner on it. Its container
+   is sized to the mini geometry in box.js (480 x 430) so the drawing renders
+   at about 1:1 and its labels stay readable from the back. */
 #s6 { justify-content: center; }
-#s6 .statement { font-size: 54px; max-width: 34ch; }
 #s6 .col-figure { align-self: flex-start; width: 480px; margin-top: 36px; }
 #s6 #region-box-mini { height: 400px; margin-top: 0; }
 #s6 .caption { margin: 0 0 0 78px; }   /* 78px = the box's own left axis */
@@ -41,6 +43,10 @@
 /* 7 — Variable interval. The cumulative record earns the lower two thirds. */
 #s7 .statement { font-size: 50px; max-width: 30ch; }
 #s7 #region-cumulative-record { height: 380px; }
+
+/* 7b — WAITING. A single word, set in the mono face, hanging from the left
+   margin like the statements. */
+#s7b .word { font-size: 100px; line-height: 1; margin: 0; letter-spacing: -.02em; }
 
 /* 13 — Frictionless. The real log, given as much width as the stage has. */
 #s13 .statement { font-size: 40px; max-width: 46ch; }

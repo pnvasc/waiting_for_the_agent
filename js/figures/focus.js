@@ -50,8 +50,9 @@ export function render(container, data) {
     totals.set(e.app, (totals.get(e.app) || 0) + seconds);
   });
 
-  // Lanes ordered by total time, busiest at the top — a legible reading order.
-  const apps = [...totals.keys()].sort((a, b) => totals.get(b) - totals.get(a));
+  // Lanes in alphabetical order, not by time spent: the busy apps land wherever
+  // their names put them, so the switching reads as scattered, which it was.
+  const apps = [...totals.keys()].sort((a, b) => a.localeCompare(b));
 
   container.innerHTML = '';
   const root = svg(`0 0 ${W} ${H}`);
@@ -95,7 +96,9 @@ export function render(container, data) {
     line(root, x, y1 + 12, x, y1 + 19);
     text(root, x, y1 + 40, `${m}`, { 'text-anchor': 'middle' });
   }
-  text(root, x1, y1 + 40, 'minutes', { class: 'axis', 'text-anchor': 'end' });
+  // Under the last tick label rather than beside it: a full hour puts a tick
+  // at the very end of the axis.
+  text(root, x1, y1 + 62, 'minutes', { class: 'axis', 'text-anchor': 'end' });
 
   /* --- the 15-second reference ----------------------------------------------
      Drawn at true scale. It is almost nothing, and that is the argument:

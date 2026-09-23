@@ -52,17 +52,16 @@
     </section>
 
     <!-- 2 ─ Confession --------------------------------------------------
-         The counter is a time event, therefore red and mono. It renders a
-         stub value now; deck.bind() is the hook for live data later.      -->
+         The counter is a time event, therefore red and mono. It is live:
+         main.js counts up from the last prompt in trace.jsonl.            -->
     <section class="slide" id="s2" data-motion="agent">
       <p class="statement">Hi, I&rsquo;m Paula, and it&rsquo;s been
-        <span class="time" id="seconds-since-prompt">[N]</span> seconds
-        since my last prompt.</p>
+        <span class="time" id="minutes-since-prompt">[N]</span>
+        <span id="minutes-word">minutes</span> since my last prompt.</p>
       <aside class="notes">
         <p>The room will recognise this. Wait for the laugh.</p>
-        <p>The number is live-bindable: <code>deck.bind('seconds-since-prompt', fn)</code>.
-          Right now it reads a stub. If the live hook is wired by the night,
-          it is counting up while you speak.</p>
+        <p>The number is live: minutes since the last prompt in trace.jsonl,
+          counting up while you speak. A prompt sent now resets it to 0.</p>
       </aside>
     </section>
 
@@ -209,8 +208,13 @@
     </section>
 
     <!-- 5 ─ The box -----------------------------------------------------
-         Four corners, one per keypress: bread, blood, Agent (abrupt), Hsieh. -->
-    <section class="slide" id="s5" data-motion="human" data-steps="4">
+         Four corners, one per keypress: bread, blood, Agent (abrupt), Hsieh.
+         The fifth press fades in the sentence above the box.              -->
+    <section class="slide" id="s5" data-motion="human" data-steps="5">
+      <p class="statement human" data-step="5">
+        <span class="line">Shortness produces captivity.</span>
+        <span class="line">Illegibility produces scatter &amp; anxiety.</span>
+      </p>
       <div class="region" id="region-box"></div>
       <aside class="notes">
         <p>Two axes: how long the wait is, and how legible the process is.</p>
@@ -226,12 +230,6 @@
 
     <!-- 6 ─ What the box says ------------------------------------------- -->
     <section class="slide" id="s6" data-motion="human">
-      <div class="col-text">
-        <p class="statement">
-          <span class="line">Shortness produces captivity.</span>
-          <span class="line">Illegibility produces scatter &amp; anxiety.</span>
-        </p>
-      </div>
       <div class="col-figure">
         <div class="region agent" id="region-box-mini"></div>
         <p class="caption">The agent gets both.</p>
@@ -265,6 +263,13 @@
       </aside>
     </section>
 
+    <!-- 7b ─ waiting --------------------------------------------------
+         One word, in the machine's face. Appears on the frame.           -->
+    <section class="slide" id="s7b" data-motion="agent">
+      <p class="word mono">WAITING</p>
+      <aside class="notes"></aside>
+    </section>
+
     <!-- 8 ─ Queuing ----------------------------------------------------- -->
     <section class="slide" id="s8" data-motion="human">
       <p class="kicker">Waiting</p>
@@ -282,6 +287,7 @@
 
     <!-- 9 ─ Bottleneck --------------------------------------------------- -->
     <section class="slide" id="s9" data-motion="human">
+      <p class="kicker">Waiting</p>
       <p class="statement long">I start new activities that create a queue
         where I am the bottleneck.</p>
       <aside class="notes">
@@ -294,6 +300,14 @@
         <p>And the punchline, which may want its own slide:
           <strong>By waiting, I create new opportunities for waiting.</strong></p>
       </aside>
+    </section>
+
+    <!-- 9b ─ Occasions for waiting ----------------------------------- -->
+    <section class="slide" id="s9b" data-motion="human">
+      <p class="kicker">Waiting</p>
+      <p class="statement long">in waiting, I create new occasions for
+        waiting</p>
+      <aside class="notes"></aside>
     </section>
 
     <!-- 10 ─ Attention --------------------------------------------------- -->
@@ -329,6 +343,7 @@
 
     <!-- 12 ─ Achievability ------------------------------------------------ -->
     <section class="slide" id="s12" data-motion="human">
+      <p class="kicker">What fills the time of waiting?</p>
       <p class="statement long">Achievability and goal-proximity bias the
         choice of the next course of action</p>
       <aside class="notes">

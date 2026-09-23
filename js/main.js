@@ -179,17 +179,33 @@ bindKeys({
 });
 
 /* --- live values ------------------------------------------------------------
-   hook: slide 2's counter. It reads a stub now — the number of seconds since
-   the last UserPromptSubmit in data/checks.json's source run — and is meant to
-   be replaced by a reader of the live trace:
+   Slide 2's counter: minutes since my last prompt, read from the hook trace.
+   The UserPromptSubmit hook in .claude/settings.json appends {t, event} to
+   trace.jsonl, and the server hands it to us as a plain file, so we re-read it
+   every two seconds and count up from the last prompt. The word after the
+   number is bound too, so one minute reads "1 minute". */
 
-     deck.bind('seconds-since-prompt', () => liveSecondsSinceLastPrompt());  */
+let lastPrompt = null;
 
-load('checks').then((d) => {
-  if (!d?.checks?.length) return;
-  const lastGap = Math.round(d.checks[d.checks.length - 1] - d.checks[d.checks.length - 2]);
-  deck.bind('seconds-since-prompt', () => lastGap);
-});
+async function readTrace() {
+  const res = await fetch('trace.jsonl', { cache: 'no-store' });
+  const lines = (await res.text()).trim().split('\n');
+  for (let i = lines.length - 1; i >= 0; i -= 1) {
+    try {
+      const e = JSON.parse(lines[i]);
+      if (e.event === 'UserPromptSubmit') { lastPrompt = e.t; return; }
+    } catch { /* a line still being written; skip it */ }
+  }
+}
+
+readTrace().catch(() => {});
+setInterval(() => readTrace().catch(() => {}), 2000);
+
+const minutesSincePrompt = () =>
+  lastPrompt === null ? null : Math.floor((Date.now() / 1000 - lastPrompt) / 60);
+
+deck.bind('minutes-since-prompt', () => minutesSincePrompt() ?? '[N]');
+deck.bind('minutes-word', () => (minutesSincePrompt() === 1 ? 'minute' : 'minutes'));
 
 /* --- catch up ---------------------------------------------------------------
    The engine emitted its first 'change' while it was being constructed, before

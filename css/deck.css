@@ -161,7 +161,7 @@ body {
 .statement.long { font-size: 50px; max-width: 30ch; }
 .statement.short { font-size: 76px; max-width: 18ch; }
 
-/* Two sentences that are one idea (slide 6). Set as separate lines of verse,
+/* Two sentences that are one idea (slide 5). Set as separate lines of verse,
    not as a list — no markers, no hanging indent. */
 .statement .line { display: block; }
 .statement .line + .line { margin-top: .34em; }

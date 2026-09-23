@@ -120,7 +120,7 @@ export function render(container, _data, options = {}) {
 
   /* --- slide 6: what the Agent corner is short of --------------------------
      Two dotted leaders from the agent mark down to "short" and across to
-     "illegible" — the two failures the statement on the left has just named. */
+     "illegible" — the two failures the end of slide 5 has just named. */
 
   if (only === 'agent') {
     const cx = cxOf(0);

@@ -1,334 +1,286 @@
 {
-  "source": "focus.jsonl, one continuous logging run (82 switches over 60 minutes)",
-  "stub": true,
-  "t0": 1790066686,
+  "source": "focus.jsonl, the hour with the most apps (Z-Library excluded): 2026-09-23 12:12\u201313:12, 12 apps, 69 switches. The last record closes the hour.",
+  "stub": false,
+  "t0": 1790158335,
   "events": [
     {
       "t": 0,
-      "app": "Terminal"
+      "app": "MSTeams"
     },
     {
-      "t": 7,
-      "app": "Microsoft Outlook"
+      "t": 1,
+      "app": "Microsoft Word"
     },
     {
-      "t": 96,
+      "t": 4,
+      "app": "MSTeams"
+    },
+    {
+      "t": 6,
+      "app": "Claude"
+    },
+    {
+      "t": 8,
+      "app": "Code"
+    },
+    {
+      "t": 38,
       "app": "Google Chrome"
+    },
+    {
+      "t": 71,
+      "app": "Code"
+    },
+    {
+      "t": 177,
+      "app": "Google Chrome"
+    },
+    {
+      "t": 389,
+      "app": "Gemini"
+    },
+    {
+      "t": 390,
+      "app": "Code"
     },
     {
       "t": 393,
+      "app": "Terminal"
+    },
+    {
+      "t": 400,
       "app": "Code"
     },
     {
-      "t": 493,
-      "app": "Google Chrome"
+      "t": 637,
+      "app": "Photos"
     },
     {
-      "t": 497,
-      "app": "MSTeams"
-    },
-    {
-      "t": 498,
-      "app": "Code"
-    },
-    {
-      "t": 527,
-      "app": "MSTeams"
-    },
-    {
-      "t": 567,
-      "app": "Microsoft Outlook"
-    },
-    {
-      "t": 581,
-      "app": "Google Chrome"
-    },
-    {
-      "t": 595,
-      "app": "Code"
-    },
-    {
-      "t": 609,
-      "app": "Google Chrome"
-    },
-    {
-      "t": 680,
-      "app": "Code"
-    },
-    {
-      "t": 727,
-      "app": "Google Chrome"
-    },
-    {
-      "t": 762,
-      "app": "Code"
-    },
-    {
-      "t": 896,
+      "t": 655,
       "app": "Finder"
     },
     {
-      "t": 918,
+      "t": 673,
       "app": "Code"
     },
     {
-      "t": 1020,
+      "t": 684,
+      "app": "Finder"
+    },
+    {
+      "t": 685,
+      "app": "Code"
+    },
+    {
+      "t": 771,
       "app": "Google Chrome"
     },
     {
-      "t": 1321,
+      "t": 794,
+      "app": "Code"
+    },
+    {
+      "t": 888,
+      "app": "Google Chrome"
+    },
+    {
+      "t": 1226,
+      "app": "Microsoft Outlook"
+    },
+    {
+      "t": 1241,
+      "app": "Google Chrome"
+    },
+    {
+      "t": 1283,
+      "app": "MSTeams"
+    },
+    {
+      "t": 1286,
+      "app": "Google Chrome"
+    },
+    {
+      "t": 1292,
+      "app": "Code"
+    },
+    {
+      "t": 1310,
+      "app": "Google Chrome"
+    },
+    {
+      "t": 1336,
+      "app": "Code"
+    },
+    {
+      "t": 1356,
+      "app": "Google Chrome"
+    },
+    {
+      "t": 1360,
+      "app": "Code"
+    },
+    {
+      "t": 1429,
+      "app": "MSTeams"
+    },
+    {
+      "t": 1445,
+      "app": "Google Chrome"
+    },
+    {
+      "t": 1448,
+      "app": "Code"
+    },
+    {
+      "t": 1452,
+      "app": "Google Chrome"
+    },
+    {
+      "t": 1507,
+      "app": "Code"
+    },
+    {
+      "t": 1579,
+      "app": "Google Chrome"
+    },
+    {
+      "t": 1600,
+      "app": "Code"
+    },
+    {
+      "t": 1723,
       "app": "Claude"
     },
     {
-      "t": 1322,
+      "t": 1724,
       "app": "Code"
     },
     {
-      "t": 1344,
+      "t": 1729,
+      "app": "MSTeams"
+    },
+    {
+      "t": 1787,
       "app": "Google Chrome"
     },
     {
-      "t": 1409,
+      "t": 1789,
+      "app": "Code"
+    },
+    {
+      "t": 1930,
+      "app": "Obsidian"
+    },
+    {
+      "t": 1934,
+      "app": "Code"
+    },
+    {
+      "t": 1946,
+      "app": "Google Chrome"
+    },
+    {
+      "t": 2111,
+      "app": "Code"
+    },
+    {
+      "t": 2131,
+      "app": "MSTeams"
+    },
+    {
+      "t": 2363,
+      "app": "Google Chrome"
+    },
+    {
+      "t": 2365,
+      "app": "Code"
+    },
+    {
+      "t": 2513,
+      "app": "Google Chrome"
+    },
+    {
+      "t": 2515,
+      "app": "Code"
+    },
+    {
+      "t": 2516,
+      "app": "Google Chrome"
+    },
+    {
+      "t": 2518,
+      "app": "MSTeams"
+    },
+    {
+      "t": 2613,
+      "app": "Code"
+    },
+    {
+      "t": 2656,
+      "app": "Notion"
+    },
+    {
+      "t": 2675,
+      "app": "Google Chrome"
+    },
+    {
+      "t": 2994,
       "app": "Microsoft Outlook"
     },
     {
-      "t": 1412,
-      "app": "Google Chrome"
-    },
-    {
-      "t": 1415,
-      "app": "Code"
-    },
-    {
-      "t": 1494,
-      "app": "Google Chrome"
-    },
-    {
-      "t": 1518,
+      "t": 2995,
       "app": "MSTeams"
     },
     {
-      "t": 1636,
+      "t": 2999,
       "app": "Google Chrome"
     },
     {
-      "t": 1644,
+      "t": 3006,
       "app": "Code"
     },
     {
-      "t": 1682,
+      "t": 3008,
       "app": "Google Chrome"
     },
     {
-      "t": 1705,
-      "app": "MSTeams"
-    },
-    {
-      "t": 1720,
-      "app": "Google Chrome"
-    },
-    {
-      "t": 1773,
+      "t": 3141,
       "app": "Code"
     },
     {
-      "t": 1835,
-      "app": "Google Chrome"
-    },
-    {
-      "t": 1871,
-      "app": "Microsoft Outlook"
-    },
-    {
-      "t": 1873,
-      "app": "Google Chrome"
-    },
-    {
-      "t": 1875,
-      "app": "Code"
-    },
-    {
-      "t": 1986,
-      "app": "Google Chrome"
-    },
-    {
-      "t": 2009,
-      "app": "MSTeams"
-    },
-    {
-      "t": 2013,
-      "app": "Google Chrome"
-    },
-    {
-      "t": 2019,
-      "app": "Microsoft Outlook"
-    },
-    {
-      "t": 2021,
-      "app": "MSTeams"
-    },
-    {
-      "t": 2042,
+      "t": 3162,
       "app": "Claude"
     },
     {
-      "t": 2044,
-      "app": "Code"
-    },
-    {
-      "t": 2153,
-      "app": "Notion"
-    },
-    {
-      "t": 2167,
-      "app": "MSTeams"
-    },
-    {
-      "t": 2180,
+      "t": 3177,
       "app": "Google Chrome"
     },
     {
-      "t": 2183,
-      "app": "Microsoft Outlook"
+      "t": 3184,
+      "app": "Code"
     },
     {
-      "t": 2189,
-      "app": "MSTeams"
-    },
-    {
-      "t": 2191,
+      "t": 3454,
       "app": "Claude"
     },
     {
-      "t": 2193,
+      "t": 3473,
       "app": "Code"
     },
     {
-      "t": 2256,
-      "app": "Google Chrome"
+      "t": 3495,
+      "app": "Claude"
     },
     {
-      "t": 2376,
-      "app": "MSTeams"
+      "t": 3514,
+      "app": "Obsidian"
     },
     {
-      "t": 2378,
-      "app": "Microsoft Outlook"
-    },
-    {
-      "t": 2382,
+      "t": 3515,
       "app": "Code"
     },
     {
-      "t": 2512,
-      "app": "Google Chrome"
-    },
-    {
-      "t": 2533,
-      "app": "Code"
-    },
-    {
-      "t": 2890,
-      "app": "MSTeams"
-    },
-    {
-      "t": 2950,
-      "app": "Google Chrome"
-    },
-    {
-      "t": 2977,
-      "app": "MSTeams"
-    },
-    {
-      "t": 2981,
-      "app": "Google Chrome"
-    },
-    {
-      "t": 3009,
-      "app": "Code"
-    },
-    {
-      "t": 3013,
-      "app": "MSTeams"
-    },
-    {
-      "t": 3019,
-      "app": "Google Chrome"
-    },
-    {
-      "t": 3066,
-      "app": "MSTeams"
-    },
-    {
-      "t": 3075,
-      "app": "Google Chrome"
-    },
-    {
-      "t": 3080,
-      "app": "Code"
-    },
-    {
-      "t": 3158,
-      "app": "Google Chrome"
-    },
-    {
-      "t": 3239,
-      "app": "MSTeams"
-    },
-    {
-      "t": 3304,
-      "app": "Google Chrome"
-    },
-    {
-      "t": 3318,
-      "app": "Code"
-    },
-    {
-      "t": 3386,
-      "app": "Google Chrome"
-    },
-    {
-      "t": 3417,
-      "app": "Code"
-    },
-    {
-      "t": 3430,
-      "app": "Google Chrome"
-    },
-    {
-      "t": 3444,
-      "app": "MSTeams"
-    },
-    {
-      "t": 3457,
-      "app": "zotero"
-    },
-    {
-      "t": 3460,
-      "app": "Google Chrome"
-    },
-    {
-      "t": 3467,
-      "app": "Code"
-    },
-    {
-      "t": 3538,
-      "app": "Notion"
-    },
-    {
-      "t": 3570,
-      "app": "Google Chrome"
-    },
-    {
-      "t": 3576,
-      "app": "MSTeams"
-    },
-    {
-      "t": 3577,
-      "app": "Notion"
-    },
-    {
-      "t": 3595,
+      "t": 3600,
       "app": "Code"
     }
   ]
