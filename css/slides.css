@@ -15,14 +15,14 @@
 
 /* 3c — Operating agents. Wider margins than the rest: the main line is long,
    and the drawing is sized to its content (1:1 where it fits). */
-#s3c { padding: 96px 80px; justify-content: center; }
+#s3c { padding: 70px 56px; justify-content: center; }
 #s3c #region-scatter { margin-top: 0; }
 #s3c #region-scatter svg { width: auto; height: auto; max-width: 100%; }
 
-/* 4 — The scene. Text above, the score below it, both given room. */
+/* 4 — The scene. Text above, the four-stave polyphony below it. */
 #s4 { justify-content: center; }
-#s4 .statement { font-size: 44px; max-width: 34ch; }
-#s4 #region-score-scene { height: 300px; }
+#s4 .statement { font-size: 40px; max-width: 38ch; }
+#s4 #region-score-scene { height: 340px; margin-top: 44px; }
 
 /* 5 — The box. The diagram is the slide; there is no prose. */
 #s5 { justify-content: center; padding: 70px 150px; }

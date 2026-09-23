@@ -12,6 +12,7 @@
      D                  night variant
      C                  elapsed clock in the corner
      P                  presenter window
+     S                  play / stop the sound on this slide
    =========================================================================== */
 
 export function bindKeys(actions) {
@@ -31,6 +32,7 @@ export function bindKeys(actions) {
     d: 'night',
     c: 'clock',
     p: 'presenter',
+    s: 'sound',
   };
 
   addEventListener('keydown', (e) => {

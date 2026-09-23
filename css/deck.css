@@ -269,6 +269,7 @@ body {
 .region .fill   { fill: var(--ink); }
 .region .mark   { stroke: var(--rubric); stroke-width: 1.4; fill: none; }
 .region .mark-fill { fill: var(--rubric); }
+.region .playhead  { stroke: var(--rubric); stroke-width: 1.4; }
 
 .region text {
   font-family: var(--mono);
@@ -283,13 +284,17 @@ body {
 
 /* The human voice inside a drawing (the agent slide): the same serif as the
    statements, not the mono of data labels, because these are my actions. */
-.region text.voice { font-family: var(--serif); font-size: 28px; letter-spacing: 0; fill: var(--ink); }
-.region text.voice.branch { font-size: 24px; }
+.region text.voice { font-family: var(--serif); font-size: 25px; letter-spacing: 0; fill: var(--ink); }
+.region text.voice.branch { font-size: 21px; }
 .region text.voice.rubric { fill: var(--rubric); }
 /* Seconds between activities on the agent slide: red like the bread slide's
    waits, and a size down from the activities they separate. */
-.region text.voice.t { fill: var(--rubric); font-size: 22px; }
-.region text.voice.branch.t { font-size: 19px; }
+.region text.voice.t { fill: var(--rubric); font-size: 20px; }
+.region text.voice.branch.t { font-size: 17px; }
+/* The agent slide's thread: the line I am on, and the faint line of the thread
+   I have left, which carries on without me while I am away. */
+.region .thread { stroke: var(--ink-2); stroke-width: 1; fill: none; }
+.region .absent { stroke: var(--ink-3); stroke-width: 1.2; stroke-dasharray: 1 6; stroke-linecap: round; fill: none; }
 .region .sep { fill: var(--ink-3); }
 
 /* A region that carries its own source markup keeps it for the figure to read

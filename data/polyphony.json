@@ -1,0 +1,1618 @@
+{
+ "source": "trace.jsonl, two stretches cut by trace2poly.py",
+ "voices": [
+  {
+   "id": "A",
+   "session": "d4187569-c7ee-4bdf-a9fe-b4630e1c5148",
+   "label": "building this deck",
+   "start": "Tue 14:51",
+   "events": [
+    {
+     "t": 0.0,
+     "e": "prompt"
+    },
+    {
+     "t": 4.54,
+     "e": "tool",
+     "tool": "ToolSearch"
+    },
+    {
+     "t": 4.57,
+     "e": "done",
+     "tool": "ToolSearch"
+    },
+    {
+     "t": 5.78,
+     "e": "tool",
+     "tool": "Bash"
+    },
+    {
+     "t": 6.34,
+     "e": "done",
+     "tool": "Bash"
+    },
+    {
+     "t": 10.28,
+     "e": "tool",
+     "tool": "WebFetch"
+    },
+    {
+     "t": 12.45,
+     "e": "tool",
+     "tool": "Bash"
+    },
+    {
+     "t": 12.53,
+     "e": "done",
+     "tool": "Bash"
+    },
+    {
+     "t": 17.45,
+     "e": "done",
+     "tool": "WebFetch"
+    },
+    {
+     "t": 23.8,
+     "e": "tool",
+     "tool": "Bash"
+    },
+    {
+     "t": 25.64,
+     "e": "done",
+     "tool": "Bash"
+    },
+    {
+     "t": 25.67,
+     "e": "tool",
+     "tool": "Bash"
+    },
+    {
+     "t": 25.71,
+     "e": "done",
+     "tool": "Bash"
+    },
+    {
+     "t": 31.36,
+     "e": "tool",
+     "tool": "Bash"
+    },
+    {
+     "t": 33.25,
+     "e": "done",
+     "tool": "Bash"
+    },
+    {
+     "t": 35.33,
+     "e": "tool",
+     "tool": "Read"
+    },
+    {
+     "t": 35.36,
+     "e": "done",
+     "tool": "Read"
+    },
+    {
+     "t": 44.29,
+     "e": "tool",
+     "tool": "Bash"
+    },
+    {
+     "t": 44.36,
+     "e": "done",
+     "tool": "Bash"
+    },
+    {
+     "t": 69.55,
+     "e": "tool",
+     "tool": "AskUserQuestion"
+    },
+    {
+     "t": 75.58,
+     "e": "notify"
+    },
+    {
+     "t": 258.57,
+     "e": "done",
+     "tool": "AskUserQuestion"
+    },
+    {
+     "t": 394.47,
+     "e": "tool",
+     "tool": "Write"
+    },
+    {
+     "t": 394.5,
+     "e": "done",
+     "tool": "Write"
+    },
+    {
+     "t": 396.47,
+     "e": "tool",
+     "tool": "ExitPlanMode"
+    },
+    {
+     "t": 402.5,
+     "e": "notify"
+    },
+    {
+     "t": 559.03,
+     "e": "done",
+     "tool": "ExitPlanMode"
+    },
+    {
+     "t": 565.72,
+     "e": "tool",
+     "tool": "Bash"
+    },
+    {
+     "t": 568.44,
+     "e": "done",
+     "tool": "Bash"
+    },
+    {
+     "t": 577.24,
+     "e": "tool",
+     "tool": "Bash"
+    },
+    {
+     "t": 579.88,
+     "e": "done",
+     "tool": "Bash"
+    },
+    {
+     "t": 585.17,
+     "e": "tool",
+     "tool": "Bash"
+    },
+    {
+     "t": 587.82,
+     "e": "done",
+     "tool": "Bash"
+    },
+    {
+     "t": 592.98,
+     "e": "tool",
+     "tool": "Bash"
+    },
+    {
+     "t": 599.0,
+     "e": "notify"
+    },
+    {
+     "t": 607.49,
+     "e": "done",
+     "tool": "Bash"
+    },
+    {
+     "t": 618.1,
+     "e": "tool",
+     "tool": "Bash"
+    },
+    {
+     "t": 623.07,
+     "e": "done",
+     "tool": "Bash"
+    },
+    {
+     "t": 636.11,
+     "e": "tool",
+     "tool": "Bash"
+    },
+    {
+     "t": 642.13,
+     "e": "notify"
+    },
+    {
+     "t": 732.0,
+     "e": "done",
+     "tool": "Bash"
+    },
+    {
+     "t": 739.52,
+     "e": "tool",
+     "tool": "Bash"
+    },
+    {
+     "t": 745.55,
+     "e": "notify"
+    },
+    {
+     "t": 763.98,
+     "e": "done",
+     "tool": "Bash"
+    },
+    {
+     "t": 770.89,
+     "e": "tool",
+     "tool": "Bash"
+    },
+    {
+     "t": 776.92,
+     "e": "notify"
+    },
+    {
+     "t": 1010.81,
+     "e": "done",
+     "tool": "Bash"
+    },
+    {
+     "t": 1023.53,
+     "e": "tool",
+     "tool": "Bash"
+    },
+    {
+     "t": 1027.63,
+     "e": "done",
+     "tool": "Bash"
+    },
+    {
+     "t": 1106.72,
+     "e": "tool",
+     "tool": "Write"
+    },
+    {
+     "t": 1106.74,
+     "e": "done",
+     "tool": "Write"
+    },
+    {
+     "t": 1119.28,
+     "e": "tool",
+     "tool": "Write"
+    },
+    {
+     "t": 1119.3,
+     "e": "done",
+     "tool": "Write"
+    },
+    {
+     "t": 1171.95,
+     "e": "tool",
+     "tool": "Write"
+    },
+    {
+     "t": 1171.98,
+     "e": "done",
+     "tool": "Write"
+    },
+    {
+     "t": 1181.17,
+     "e": "tool",
+     "tool": "Edit"
+    },
+    {
+     "t": 1181.2,
+     "e": "done",
+     "tool": "Edit"
+    },
+    {
+     "t": 1206.13,
+     "e": "tool",
+     "tool": "Write"
+    },
+    {
+     "t": 1206.17,
+     "e": "done",
+     "tool": "Write"
+    },
+    {
+     "t": 1214.81,
+     "e": "tool",
+     "tool": "Write"
+    },
+    {
+     "t": 1214.83,
+     "e": "done",
+     "tool": "Write"
+    },
+    {
+     "t": 1223.86,
+     "e": "tool",
+     "tool": "Write"
+    },
+    {
+     "t": 1223.89,
+     "e": "done",
+     "tool": "Write"
+    },
+    {
+     "t": 1232.79,
+     "e": "tool",
+     "tool": "Write"
+    },
+    {
+     "t": 1232.81,
+     "e": "done",
+     "tool": "Write"
+    },
+    {
+     "t": 1240.77,
+     "e": "tool",
+     "tool": "Write"
+    },
+    {
+     "t": 1240.79,
+     "e": "done",
+     "tool": "Write"
+    },
+    {
+     "t": 1251.32,
+     "e": "tool",
+     "tool": "Write"
+    },
+    {
+     "t": 1251.35,
+     "e": "done",
+     "tool": "Write"
+    },
+    {
+     "t": 1275.43,
+     "e": "tool",
+     "tool": "Write"
+    },
+    {
+     "t": 1275.46,
+     "e": "done",
+     "tool": "Write"
+    },
+    {
+     "t": 1283.14,
+     "e": "tool",
+     "tool": "Edit"
+    },
+    {
+     "t": 1283.18,
+     "e": "done",
+     "tool": "Edit"
+    },
+    {
+     "t": 1312.66,
+     "e": "tool",
+     "tool": "Write"
+    },
+    {
+     "t": 1312.68,
+     "e": "done",
+     "tool": "Write"
+    },
+    {
+     "t": 1319.3,
+     "e": "tool",
+     "tool": "Edit"
+    },
+    {
+     "t": 1319.32,
+     "e": "done",
+     "tool": "Edit"
+    },
+    {
+     "t": 1335.07,
+     "e": "tool",
+     "tool": "Write"
+    },
+    {
+     "t": 1335.1,
+     "e": "done",
+     "tool": "Write"
+    },
+    {
+     "t": 1357.02,
+     "e": "tool",
+     "tool": "Write"
+    },
+    {
+     "t": 1357.07,
+     "e": "done",
+     "tool": "Write"
+    },
+    {
+     "t": 1382.93,
+     "e": "tool",
+     "tool": "Write"
+    },
+    {
+     "t": 1382.95,
+     "e": "done",
+     "tool": "Write"
+    },
+    {
+     "t": 1397.24,
+     "e": "tool",
+     "tool": "Edit"
+    },
+    {
+     "t": 1397.27,
+     "e": "done",
+     "tool": "Edit"
+    },
+    {
+     "t": 1413.38,
+     "e": "tool",
+     "tool": "Write"
+    },
+    {
+     "t": 1413.41,
+     "e": "done",
+     "tool": "Write"
+    },
+    {
+     "t": 1420.37,
+     "e": "tool",
+     "tool": "Write"
+    },
+    {
+     "t": 1420.39,
+     "e": "done",
+     "tool": "Write"
+    },
+    {
+     "t": 1441.47,
+     "e": "tool",
+     "tool": "Write"
+    },
+    {
+     "t": 1441.51,
+     "e": "done",
+     "tool": "Write"
+    },
+    {
+     "t": 1447.17,
+     "e": "tool",
+     "tool": "Bash"
+    },
+    {
+     "t": 1453.21,
+     "e": "notify"
+    },
+    {
+     "t": 1487.68,
+     "e": "done",
+     "tool": "Bash"
+    },
+    {
+     "t": 1493.03,
+     "e": "tool",
+     "tool": "Bash"
+    },
+    {
+     "t": 1496.09,
+     "e": "done",
+     "tool": "Bash"
+    },
+    {
+     "t": 1500.64,
+     "e": "tool",
+     "tool": "Bash"
+    },
+    {
+     "t": 1510.15,
+     "e": "done",
+     "tool": "Bash"
+    },
+    {
+     "t": 1513.11,
+     "e": "tool",
+     "tool": "Read"
+    },
+    {
+     "t": 1513.14,
+     "e": "done",
+     "tool": "Read"
+    },
+    {
+     "t": 1518.84,
+     "e": "tool",
+     "tool": "Bash"
+    },
+    {
+     "t": 1524.87,
+     "e": "notify"
+    },
+    {
+     "t": 1551.38,
+     "e": "done",
+     "tool": "Bash"
+    },
+    {
+     "t": 1554.65,
+     "e": "tool",
+     "tool": "Read"
+    },
+    {
+     "t": 1554.67,
+     "e": "done",
+     "tool": "Read"
+    },
+    {
+     "t": 1568.67,
+     "e": "tool",
+     "tool": "Read"
+    },
+    {
+     "t": 1568.69,
+     "e": "done",
+     "tool": "Read"
+    },
+    {
+     "t": 1578.84,
+     "e": "tool",
+     "tool": "Read"
+    },
+    {
+     "t": 1578.86,
+     "e": "done",
+     "tool": "Read"
+    },
+    {
+     "t": 1586.64,
+     "e": "tool",
+     "tool": "Read"
+    },
+    {
+     "t": 1586.66,
+     "e": "done",
+     "tool": "Read"
+    },
+    {
+     "t": 1606.0,
+     "e": "tool",
+     "tool": "Read"
+    },
+    {
+     "t": 1606.04,
+     "e": "done",
+     "tool": "Read"
+    },
+    {
+     "t": 1615.98,
+     "e": "tool",
+     "tool": "Read"
+    },
+    {
+     "t": 1615.99,
+     "e": "done",
+     "tool": "Read"
+    },
+    {
+     "t": 1631.61,
+     "e": "tool",
+     "tool": "Bash"
+    },
+    {
+     "t": 1637.64,
+     "e": "notify"
+    },
+    {
+     "t": 1660.81,
+     "e": "done",
+     "tool": "Bash"
+    },
+    {
+     "t": 1671.97,
+     "e": "tool",
+     "tool": "Bash"
+    },
+    {
+     "t": 1677.53,
+     "e": "done",
+     "tool": "Bash"
+    },
+    {
+     "t": 1693.78,
+     "e": "tool",
+     "tool": "Bash"
+    },
+    {
+     "t": 1701.15,
+     "e": "done",
+     "tool": "Bash"
+    },
+    {
+     "t": 1705.01,
+     "e": "tool",
+     "tool": "Read"
+    },
+    {
+     "t": 1705.03,
+     "e": "done",
+     "tool": "Read"
+    },
+    {
+     "t": 1711.06,
+     "e": "tool",
+     "tool": "Read"
+    },
+    {
+     "t": 1711.09,
+     "e": "done",
+     "tool": "Read"
+    },
+    {
+     "t": 1743.7,
+     "e": "tool",
+     "tool": "Write"
+    },
+    {
+     "t": 1743.74,
+     "e": "done",
+     "tool": "Write"
+    },
+    {
+     "t": 1754.87,
+     "e": "tool",
+     "tool": "Edit"
+    },
+    {
+     "t": 1754.89,
+     "e": "done",
+     "tool": "Edit"
+    },
+    {
+     "t": 1761.8,
+     "e": "tool",
+     "tool": "Edit"
+    },
+    {
+     "t": 1761.83,
+     "e": "done",
+     "tool": "Edit"
+    },
+    {
+     "t": 1769.82,
+     "e": "tool",
+     "tool": "Edit"
+    },
+    {
+     "t": 1769.87,
+     "e": "done",
+     "tool": "Edit"
+    },
+    {
+     "t": 1777.49,
+     "e": "tool",
+     "tool": "Edit"
+    },
+    {
+     "t": 1777.52,
+     "e": "done",
+     "tool": "Edit"
+    },
+    {
+     "t": 1784.88,
+     "e": "tool",
+     "tool": "Edit"
+    },
+    {
+     "t": 1784.9,
+     "e": "done",
+     "tool": "Edit"
+    },
+    {
+     "t": 1789.89,
+     "e": "tool",
+     "tool": "Edit"
+    },
+    {
+     "t": 1789.97,
+     "e": "done",
+     "tool": "Edit"
+    },
+    {
+     "t": 1796.44,
+     "e": "tool",
+     "tool": "Bash"
+    },
+    {
+     "t": 1802.47,
+     "e": "notify"
+    },
+    {
+     "t": 1846.85,
+     "e": "done",
+     "tool": "Bash"
+    },
+    {
+     "t": 1854.66,
+     "e": "tool",
+     "tool": "Bash"
+    },
+    {
+     "t": 1860.69,
+     "e": "notify"
+    },
+    {
+     "t": 2013.73,
+     "e": "done",
+     "tool": "Bash"
+    },
+    {
+     "t": 2017.27,
+     "e": "tool",
+     "tool": "Read"
+    },
+    {
+     "t": 2017.29,
+     "e": "done",
+     "tool": "Read"
+    },
+    {
+     "t": 2023.84,
+     "e": "tool",
+     "tool": "Read"
+    },
+    {
+     "t": 2023.86,
+     "e": "done",
+     "tool": "Read"
+    },
+    {
+     "t": 2031.35,
+     "e": "tool",
+     "tool": "Read"
+    },
+    {
+     "t": 2031.39,
+     "e": "done",
+     "tool": "Read"
+    },
+    {
+     "t": 2036.14,
+     "e": "tool",
+     "tool": "Read"
+    },
+    {
+     "t": 2036.17,
+     "e": "done",
+     "tool": "Read"
+    },
+    {
+     "t": 2044.61,
+     "e": "tool",
+     "tool": "Edit"
+    },
+    {
+     "t": 2044.63,
+     "e": "done",
+     "tool": "Edit"
+    },
+    {
+     "t": 2050.74,
+     "e": "tool",
+     "tool": "Edit"
+    },
+    {
+     "t": 2050.76,
+     "e": "done",
+     "tool": "Edit"
+    },
+    {
+     "t": 2057.08,
+     "e": "tool",
+     "tool": "Bash"
+    },
+    {
+     "t": 2063.13,
+     "e": "notify"
+    },
+    {
+     "t": 2082.75,
+     "e": "done",
+     "tool": "Bash"
+    },
+    {
+     "t": 2085.6,
+     "e": "tool",
+     "tool": "Read"
+    },
+    {
+     "t": 2085.63,
+     "e": "done",
+     "tool": "Read"
+    },
+    {
+     "t": 2095.94,
+     "e": "tool",
+     "tool": "Edit"
+    },
+    {
+     "t": 2095.95,
+     "e": "done",
+     "tool": "Edit"
+    },
+    {
+     "t": 2102.3,
+     "e": "tool",
+     "tool": "Bash"
+    },
+    {
+     "t": 2107.44,
+     "e": "done",
+     "tool": "Bash"
+    },
+    {
+     "t": 2110.39,
+     "e": "tool",
+     "tool": "Read"
+    },
+    {
+     "t": 2110.4,
+     "e": "done",
+     "tool": "Read"
+    },
+    {
+     "t": 2117.19,
+     "e": "tool",
+     "tool": "Bash"
+    },
+    {
+     "t": 2117.25,
+     "e": "done",
+     "tool": "Bash"
+    },
+    {
+     "t": 2122.98,
+     "e": "tool",
+     "tool": "Bash"
+    },
+    {
+     "t": 2132.53,
+     "e": "done",
+     "tool": "Bash"
+    },
+    {
+     "t": 2135.37,
+     "e": "tool",
+     "tool": "Read"
+    },
+    {
+     "t": 2135.39,
+     "e": "done",
+     "tool": "Read"
+    },
+    {
+     "t": 2140.19,
+     "e": "tool",
+     "tool": "Read"
+    },
+    {
+     "t": 2140.23,
+     "e": "done",
+     "tool": "Read"
+    },
+    {
+     "t": 2158.56,
+     "e": "tool",
+     "tool": "Edit"
+    },
+    {
+     "t": 2158.58,
+     "e": "done",
+     "tool": "Edit"
+    },
+    {
+     "t": 2164.55,
+     "e": "tool",
+     "tool": "Bash"
+    },
+    {
+     "t": 2169.56,
+     "e": "done",
+     "tool": "Bash"
+    },
+    {
+     "t": 2172.77,
+     "e": "tool",
+     "tool": "Read"
+    },
+    {
+     "t": 2172.81,
+     "e": "done",
+     "tool": "Read"
+    },
+    {
+     "t": 2180.0,
+     "e": "tool",
+     "tool": "Edit"
+    },
+    {
+     "t": 2180.03,
+     "e": "done",
+     "tool": "Edit"
+    },
+    {
+     "t": 2200.6,
+     "e": "tool",
+     "tool": "Write"
+    },
+    {
+     "t": 2200.62,
+     "e": "done",
+     "tool": "Write"
+    },
+    {
+     "t": 2207.19,
+     "e": "tool",
+     "tool": "Bash"
+    },
+    {
+     "t": 2217.29,
+     "e": "done",
+     "tool": "Bash"
+    },
+    {
+     "t": 2220.11,
+     "e": "tool",
+     "tool": "Read"
+    },
+    {
+     "t": 2220.14,
+     "e": "done",
+     "tool": "Read"
+    },
+    {
+     "t": 2225.35,
+     "e": "tool",
+     "tool": "Edit"
+    },
+    {
+     "t": 2225.36,
+     "e": "done",
+     "tool": "Edit"
+    },
+    {
+     "t": 2232.1,
+     "e": "tool",
+     "tool": "Bash"
+    },
+    {
+     "t": 2241.08,
+     "e": "done",
+     "tool": "Bash"
+    },
+    {
+     "t": 2244.3,
+     "e": "tool",
+     "tool": "Read"
+    },
+    {
+     "t": 2244.32,
+     "e": "done",
+     "tool": "Read"
+    },
+    {
+     "t": 2247.95,
+     "e": "tool",
+     "tool": "Read"
+    },
+    {
+     "t": 2247.98,
+     "e": "done",
+     "tool": "Read"
+    },
+    {
+     "t": 2263.68,
+     "e": "tool",
+     "tool": "Bash"
+    },
+    {
+     "t": 2269.73,
+     "e": "notify"
+    },
+    {
+     "t": 2274.06,
+     "e": "done",
+     "tool": "Bash"
+    },
+    {
+     "t": 2292.92,
+     "e": "tool",
+     "tool": "Write"
+    },
+    {
+     "t": 2292.94,
+     "e": "done",
+     "tool": "Write"
+    },
+    {
+     "t": 2299.2,
+     "e": "tool",
+     "tool": "Bash"
+    },
+    {
+     "t": 2305.31,
+     "e": "done",
+     "tool": "Bash"
+    },
+    {
+     "t": 2308.94,
+     "e": "tool",
+     "tool": "Read"
+    },
+    {
+     "t": 2308.96,
+     "e": "done",
+     "tool": "Read"
+    },
+    {
+     "t": 2326.06,
+     "e": "tool",
+     "tool": "Write"
+    },
+    {
+     "t": 2326.09,
+     "e": "done",
+     "tool": "Write"
+    },
+    {
+     "t": 2333.99,
+     "e": "tool",
+     "tool": "Edit"
+    },
+    {
+     "t": 2334.01,
+     "e": "done",
+     "tool": "Edit"
+    },
+    {
+     "t": 2343.6,
+     "e": "tool",
+     "tool": "Edit"
+    },
+    {
+     "t": 2343.62,
+     "e": "done",
+     "tool": "Edit"
+    },
+    {
+     "t": 2348.89,
+     "e": "tool",
+     "tool": "Edit"
+    },
+    {
+     "t": 2348.9,
+     "e": "done",
+     "tool": "Edit"
+    },
+    {
+     "t": 2354.47,
+     "e": "tool",
+     "tool": "Edit"
+    },
+    {
+     "t": 2354.48,
+     "e": "done",
+     "tool": "Edit"
+    },
+    {
+     "t": 2361.48,
+     "e": "tool",
+     "tool": "Edit"
+    },
+    {
+     "t": 2361.49,
+     "e": "done",
+     "tool": "Edit"
+    },
+    {
+     "t": 2367.62,
+     "e": "tool",
+     "tool": "Bash"
+    },
+    {
+     "t": 2371.38,
+     "e": "done",
+     "tool": "Bash"
+    },
+    {
+     "t": 2374.33,
+     "e": "tool",
+     "tool": "Read"
+    },
+    {
+     "t": 2374.34,
+     "e": "done",
+     "tool": "Read"
+    },
+    {
+     "t": 2382.26,
+     "e": "tool",
+     "tool": "Bash"
+    },
+    {
+     "t": 2394.55,
+     "e": "done",
+     "tool": "Bash"
+    },
+    {
+     "t": 2397.61,
+     "e": "tool",
+     "tool": "Bash"
+    },
+    {
+     "t": 2400.68,
+     "e": "done",
+     "tool": "Bash"
+    },
+    {
+     "t": 2404.08,
+     "e": "tool",
+     "tool": "Edit"
+    },
+    {
+     "t": 2404.1,
+     "e": "done",
+     "tool": "Edit"
+    },
+    {
+     "t": 2421.65,
+     "e": "stop"
+    },
+    {
+     "t": 2653.46,
+     "e": "prompt"
+    },
+    {
+     "t": 2668.91,
+     "e": "tool",
+     "tool": "Edit"
+    },
+    {
+     "t": 2668.94,
+     "e": "done",
+     "tool": "Edit"
+    },
+    {
+     "t": 2677.89,
+     "e": "tool",
+     "tool": "Edit"
+    },
+    {
+     "t": 2677.91,
+     "e": "done",
+     "tool": "Edit"
+    },
+    {
+     "t": 2685.56,
+     "e": "tool",
+     "tool": "Edit"
+    },
+    {
+     "t": 2685.58,
+     "e": "done",
+     "tool": "Edit"
+    },
+    {
+     "t": 2689.63,
+     "e": "tool",
+     "tool": "Bash"
+    },
+    {
+     "t": 2695.67,
+     "e": "notify"
+    },
+    {
+     "t": 2782.03,
+     "e": "done",
+     "tool": "Bash"
+    },
+    {
+     "t": 2790.04,
+     "e": "tool",
+     "tool": "Bash"
+    },
+    {
+     "t": 2795.63,
+     "e": "done",
+     "tool": "Bash"
+    },
+    {
+     "t": 2798.83,
+     "e": "tool",
+     "tool": "Read"
+    },
+    {
+     "t": 2798.84,
+     "e": "done",
+     "tool": "Read"
+    },
+    {
+     "t": 2802.85,
+     "e": "tool",
+     "tool": "Read"
+    },
+    {
+     "t": 2802.86,
+     "e": "done",
+     "tool": "Read"
+    },
+    {
+     "t": 2815.32,
+     "e": "tool",
+     "tool": "Bash"
+    },
+    {
+     "t": 2818.18,
+     "e": "done",
+     "tool": "Bash"
+    },
+    {
+     "t": 2830.65,
+     "e": "tool",
+     "tool": "Bash"
+    },
+    {
+     "t": 2834.45,
+     "e": "done",
+     "tool": "Bash"
+    },
+    {
+     "t": 2839.18,
+     "e": "tool",
+     "tool": "Bash"
+    },
+    {
+     "t": 2840.99,
+     "e": "done",
+     "tool": "Bash"
+    },
+    {
+     "t": 2843.88,
+     "e": "tool",
+     "tool": "Read"
+    },
+    {
+     "t": 2843.91,
+     "e": "done",
+     "tool": "Read"
+    },
+    {
+     "t": 2863.26,
+     "e": "tool",
+     "tool": "Bash"
+    },
+    {
+     "t": 2869.29,
+     "e": "notify"
+    },
+    {
+     "t": 2871.97,
+     "e": "done",
+     "tool": "Bash"
+    },
+    {
+     "t": 2875.15,
+     "e": "tool",
+     "tool": "Read"
+    },
+    {
+     "t": 2875.22,
+     "e": "done",
+     "tool": "Read"
+    },
+    {
+     "t": 2892.38,
+     "e": "tool",
+     "tool": "Bash"
+    },
+    {
+     "t": 2897.49,
+     "e": "done",
+     "tool": "Bash"
+    },
+    {
+     "t": 2902.34,
+     "e": "tool",
+     "tool": "Bash"
+    },
+    {
+     "t": 2905.4,
+     "e": "done",
+     "tool": "Bash"
+    },
+    {
+     "t": 2925.1,
+     "e": "tool",
+     "tool": "Bash"
+    },
+    {
+     "t": 2926.93,
+     "e": "done",
+     "tool": "Bash"
+    },
+    {
+     "t": 2932.47,
+     "e": "tool",
+     "tool": "Bash"
+    },
+    {
+     "t": 2935.91,
+     "e": "done",
+     "tool": "Bash"
+    },
+    {
+     "t": 2946.87,
+     "e": "tool",
+     "tool": "Bash"
+    },
+    {
+     "t": 2948.89,
+     "e": "done",
+     "tool": "Bash"
+    },
+    {
+     "t": 2957.79,
+     "e": "stop"
+    }
+   ]
+  },
+  {
+   "id": "B",
+   "session": "e63e10f2-de72-471a-a721-128d274dee43",
+   "label": "Monday evening",
+   "start": "Mon 21:43",
+   "events": [
+    {
+     "t": 0.0,
+     "e": "prompt"
+    },
+    {
+     "t": 31.52,
+     "e": "stop"
+    },
+    {
+     "t": 343.51,
+     "e": "prompt"
+    },
+    {
+     "t": 362.42,
+     "e": "stop"
+    },
+    {
+     "t": 412.58,
+     "e": "prompt"
+    },
+    {
+     "t": 453.86,
+     "e": "notify"
+    },
+    {
+     "t": 569.83,
+     "e": "notify"
+    },
+    {
+     "t": 593.9,
+     "e": "notify"
+    },
+    {
+     "t": 687.36,
+     "e": "notify"
+    },
+    {
+     "t": 704.36,
+     "e": "notify"
+    },
+    {
+     "t": 954.24,
+     "e": "stop"
+    },
+    {
+     "t": 1939.61,
+     "e": "prompt"
+    },
+    {
+     "t": 1944.19,
+     "e": "tool",
+     "tool": "Bash"
+    },
+    {
+     "t": 1944.31,
+     "e": "done",
+     "tool": "Bash"
+    },
+    {
+     "t": 1962.37,
+     "e": "tool",
+     "tool": "Bash"
+    },
+    {
+     "t": 1966.03,
+     "e": "done",
+     "tool": "Bash"
+    },
+    {
+     "t": 1966.05,
+     "e": "tool",
+     "tool": "Bash"
+    },
+    {
+     "t": 1967.45,
+     "e": "done",
+     "tool": "Bash"
+    },
+    {
+     "t": 1978.09,
+     "e": "tool",
+     "tool": "Skill"
+    },
+    {
+     "t": 1978.14,
+     "e": "done",
+     "tool": "Skill"
+    },
+    {
+     "t": 1985.27,
+     "e": "tool",
+     "tool": "Read"
+    },
+    {
+     "t": 1985.3,
+     "e": "done",
+     "tool": "Read"
+    },
+    {
+     "t": 1985.76,
+     "e": "tool",
+     "tool": "Read"
+    },
+    {
+     "t": 1985.79,
+     "e": "done",
+     "tool": "Read"
+    },
+    {
+     "t": 2031.0,
+     "e": "tool",
+     "tool": "Bash"
+    },
+    {
+     "t": 2032.58,
+     "e": "done",
+     "tool": "Bash"
+    },
+    {
+     "t": 2032.65,
+     "e": "tool",
+     "tool": "Read"
+    },
+    {
+     "t": 2032.67,
+     "e": "done",
+     "tool": "Read"
+    },
+    {
+     "t": 2037.46,
+     "e": "tool",
+     "tool": "Read"
+    },
+    {
+     "t": 2037.54,
+     "e": "done",
+     "tool": "Read"
+    },
+    {
+     "t": 2042.52,
+     "e": "tool",
+     "tool": "Bash"
+    },
+    {
+     "t": 2042.63,
+     "e": "done",
+     "tool": "Bash"
+    },
+    {
+     "t": 2085.08,
+     "e": "tool",
+     "tool": "Bash"
+    },
+    {
+     "t": 2091.11,
+     "e": "notify"
+    },
+    {
+     "t": 2128.15,
+     "e": "tool",
+     "tool": "Read"
+    },
+    {
+     "t": 2128.18,
+     "e": "done",
+     "tool": "Read"
+    },
+    {
+     "t": 2128.69,
+     "e": "tool",
+     "tool": "Read"
+    },
+    {
+     "t": 2128.71,
+     "e": "done",
+     "tool": "Read"
+    },
+    {
+     "t": 2302.57,
+     "e": "tool",
+     "tool": "Write"
+    },
+    {
+     "t": 2302.6,
+     "e": "done",
+     "tool": "Write"
+    },
+    {
+     "t": 2322.51,
+     "e": "tool",
+     "tool": "Edit"
+    },
+    {
+     "t": 2322.54,
+     "e": "done",
+     "tool": "Edit"
+    },
+    {
+     "t": 2332.67,
+     "e": "tool",
+     "tool": "Edit"
+    },
+    {
+     "t": 2332.7,
+     "e": "done",
+     "tool": "Edit"
+    },
+    {
+     "t": 2338.26,
+     "e": "tool",
+     "tool": "Edit"
+    },
+    {
+     "t": 2338.28,
+     "e": "done",
+     "tool": "Edit"
+    },
+    {
+     "t": 2344.66,
+     "e": "tool",
+     "tool": "Edit"
+    },
+    {
+     "t": 2344.68,
+     "e": "done",
+     "tool": "Edit"
+    },
+    {
+     "t": 2351.67,
+     "e": "tool",
+     "tool": "Edit"
+    },
+    {
+     "t": 2351.7,
+     "e": "done",
+     "tool": "Edit"
+    },
+    {
+     "t": 2363.4,
+     "e": "tool",
+     "tool": "Edit"
+    },
+    {
+     "t": 2363.42,
+     "e": "done",
+     "tool": "Edit"
+    },
+    {
+     "t": 2368.02,
+     "e": "tool",
+     "tool": "Artifact"
+    },
+    {
+     "t": 2369.09,
+     "e": "done",
+     "tool": "Artifact"
+    },
+    {
+     "t": 2383.61,
+     "e": "stop"
+    }
+   ]
+  }
+ ]
+}

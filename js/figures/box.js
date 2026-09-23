@@ -10,8 +10,8 @@
       illegible  └────────────────────────────────────────────────
                     short            Length             long
 
-   On slide 5 the corners appear one keypress at a time and the Agent corner
-   comes last — and, per the motion rule, abruptly. On slide 6 the same
+   On slide 5 the corners appear one keypress at a time — bread, blood test,
+   Agent (abruptly, per the motion rule), and Hsieh last. On slide 6 the same
    drawing returns small, with only the Agent corner on it and two leaders
    reaching to the two axes it fails on.
 
@@ -39,13 +39,12 @@ const MINI = {
   labelSize: 20, axisSize: 16, dot: 5.5,
 };
 
-/* Reveal order matters: the Agent is last, so the room has already agreed
-   about the other three by the time it lands. */
+/* Reveal order is set by `step`: bread, blood test, Agent, then Hsieh. */
 const CORNERS = [
-  { key: 'hsieh', step: 1, x: 0, y: 1, label: ['Tehching Hsieh', '(Time Clock Piece)'] },
-  { key: 'bread', step: 2, x: 1, y: 1, label: ['Making bread'] },
-  { key: 'blood', step: 3, x: 1, y: 0, label: ['Blood test results'] },
-  { key: 'agent', step: 4, x: 0, y: 0, label: ['Agent'] },
+  { key: 'bread', step: 1, x: 1, y: 1, label: ['Making bread'] },
+  { key: 'blood', step: 2, x: 1, y: 0, label: ['Blood test results'] },
+  { key: 'agent', step: 3, x: 0, y: 0, label: ['Agent'] },
+  { key: 'hsieh', step: 4, x: 0, y: 1, label: ['Tehching Hsieh', '(Time Clock Piece)'] },
 ];
 
 export function render(container, _data, options = {}) {

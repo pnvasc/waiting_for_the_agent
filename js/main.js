@@ -15,6 +15,8 @@ import { Elapsed, tick } from './clock.js';
 import { createChannel } from './sync.js';
 import { load } from './data.js';
 import { drawFigures } from './figures/registry.js';
+import { Polyphony } from './audio.js';
+import { timeline } from './timeline.js';
 
 const stage = document.getElementById('stage');
 const deck = new Deck(stage);
@@ -90,6 +92,46 @@ function publish() {
   });
 }
 
+/* --- sound ------------------------------------------------------------------
+   Slide 4 plays two sessions from trace.jsonl over each other (audio.js),
+   starting when the slide arrives and stopping when it is left. S plays or
+   stops it by hand. Browsers keep audio off until the page is touched, so the
+   first key or click anywhere in this window unlocks it — before the key's
+   own action runs, so the key that brings slide 4 up can also start it.
+
+   hook: any slide can have sound the same way — a timeline and a play(). */
+
+const SOUND_SLIDE = 's4';
+const poly = new Polyphony();
+const unlock = () => poly.unlock();
+addEventListener('keydown', unlock, { capture: true });
+addEventListener('pointerdown', unlock, { capture: true });
+
+let piece = null;
+load('polyphony').then((d) => { if (d) piece = timeline(d); });
+
+// The playhead on slide 4's staves follows the audio clock.
+poly.onProgress = (p) => {
+  const head = document.querySelector('#region-score-scene .playhead');
+  if (!head) return;
+  if (p === null) { head.setAttribute('opacity', 0); return; }
+  const x = Number(head.dataset.x0) + p * (Number(head.dataset.x1) - Number(head.dataset.x0));
+  head.setAttribute('x1', x);
+  head.setAttribute('x2', x);
+  head.setAttribute('opacity', 1);
+};
+
+function toggleSound() {
+  if (deck.state.id !== SOUND_SLIDE || !piece) return;
+  if (poly.playing) poly.stop();
+  else poly.play(piece);
+}
+
+deck.on('change', (s) => {
+  if (s.id === SOUND_SLIDE && piece && !poly.playing) poly.play(piece);
+  if (s.id !== SOUND_SLIDE && poly.playing) poly.stop();
+});
+
 deck.on('change', (s) => {
   drawFiguresFor(s.id);
   // The key hint belongs to the title slide only, and only in rehearsal.
@@ -110,6 +152,7 @@ function advance(fn) {
 /* --- keys ------------------------------------------------------------------- */
 
 bindKeys({
+  sound: toggleSound,
   next: () => advance(() => deck.next()),
   prev: () => advance(() => deck.prev()),
   first: () => deck.goto(0),

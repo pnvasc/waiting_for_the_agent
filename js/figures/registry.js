@@ -17,10 +17,11 @@ import * as score from './score.js';
 import * as cumulative from './cumulative.js';
 import * as focus from './focus.js';
 import * as scatter from './scatter.js';
+import * as polyphony from './polyphony.js';
 
 export const FIGURES = [
   { region: 'region-scatter', slide: 's3c', data: null, render: scatter.render },
-  { region: 'region-score-scene', slide: 's4', data: 'score', render: score.render },
+  { region: 'region-score-scene', slide: 's4', data: 'polyphony', render: polyphony.render },
   { region: 'region-box', slide: 's5', data: null, render: box.render },
   {
     region: 'region-box-mini', slide: 's6', data: null,
