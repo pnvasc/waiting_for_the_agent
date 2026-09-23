@@ -70,6 +70,7 @@
     <section class="slide" id="s3" data-motion="human">
       <p class="statement">The parallels between making bread and AI agents
         are illuminating</p>
+        <p></p>
       <p class="gloss ink">especially where they break.</p>
       <aside class="notes">
         <p>The essay's own phrasing: "the processes are analogous in ways that
@@ -101,35 +102,67 @@
     </section>
 
     <!-- 3c ─ Operating agents --------------------------------------------
-         Same vocabulary as the bread slide, different shape. My thread runs
-         across; every switch sprouts a line at a right angle, text rotated.
+         Same vocabulary as the bread slide, different shape. Bread is a
+         column of actions, each followed by its wait. Here my thread runs
+         across the page, the time between activities is written in red
+         seconds, and every switch sprouts a thread of its own that turns at
+         right angles, up or down, like a staircase.
+
          The words are edited here; figures/scatter.js only draws them.
+           <li>…</li>                 an activity ("switch" is one too)
+           <li class="t">…</li>       seconds between two activities (red)
+           <li class="switch"         a switch sprouts the <ol> inside it,
+               data-dir="up|down">    going up or down from the main line
+           <li class="turn"           a vertical stretch of that many px;
+               data-rise="90">        what follows it runs horizontally.
+                                      A turn with nothing after it trails off.
          data-steps = number of branches (one keypress each).                -->
     <section class="slide" id="s3c" data-motion="agent" data-steps="5">
       <div class="region" id="region-scatter">
         <ol class="sequence">
           <li>prompt agent 1</li>
-          <li class="wait">wait</li>
+          <li class="t">30 s</li>
           <li>accept</li>
-          <li class="switch">switch
-            <ol><li>prompt agent 2</li><li>accept</li><li>prompt agent 2</li></ol></li>
+          <li class="t">3 s</li>
+          <li class="switch" data-dir="up">switch
+            <ol>
+              <li class="turn" data-rise="90"></li>
+              <li class="t">2 s</li><li>prompt agent 2</li>
+              <li class="t">45 s</li><li>accept</li>
+            </ol></li>
+          <li class="t">4 s</li>
+          <li class="switch" data-dir="down">switch
+            <ol>
+              <li class="turn" data-rise="100"></li>
+              <li class="t">6 s</li><li>email</li>
+              <li class="turn" data-rise="120"></li>
+            </ol></li>
+          <li class="t">80 s</li>
           <li>check agent 1</li>
-          <li>accept</li>
-          <li class="switch">switch
-            <ol><li>email</li></ol></li>
-          <li>check agent 1</li>
-          <li>still working</li>
-          <li class="wait">wait 15 s</li>
-          <li class="switch">switch
-            <ol><li>prompt agent 3</li></ol></li>
-          <li class="switch">switch
-            <ol><li>report</li></ol></li>
-          <li class="switch">switch
-            <ol><li>teams</li></ol></li>
+          <li class="t">15 s</li>
+          <li class="switch" data-dir="up">switch
+            <ol>
+              <li class="turn" data-rise="70"></li>
+              <li class="t">3 s</li><li>accept</li>
+              <li class="turn" data-rise="90"></li>
+              <li class="t">25 s</li><li>prompt agent 3</li>
+            </ol></li>
+          <li class="t">40 s</li>
+          <li class="switch" data-dir="down">switch
+            <ol>
+              <li class="turn" data-rise="90"></li>
+              <li class="t">5 s</li><li>report</li>
+            </ol></li>
+          <li class="t">20 s</li>
+          <li class="switch" data-dir="up">switch
+            <ol>
+              <li class="turn" data-rise="60"></li>
+              <li class="t">2 s</li><li>teams</li>
+            </ol></li>
         </ol>
       </div>
       <aside class="notes">
-        <p>Five presses, one branch each: agent 2, email, agent 3, report, Teams.</p>
+        <p>Five presses, one branch each: agent 2, email, agent 2 then agent 3, report, Teams. The red numbers are seconds between activities, like the waits on the bread slide.</p>
         <p>[PAULA: notes for the agent sequence]</p>
       </aside>
     </section>

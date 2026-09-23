@@ -286,6 +286,10 @@ body {
 .region text.voice { font-family: var(--serif); font-size: 28px; letter-spacing: 0; fill: var(--ink); }
 .region text.voice.branch { font-size: 24px; }
 .region text.voice.rubric { fill: var(--rubric); }
+/* Seconds between activities on the agent slide: red like the bread slide's
+   waits, and a size down from the activities they separate. */
+.region text.voice.t { fill: var(--rubric); font-size: 22px; }
+.region text.voice.branch.t { font-size: 19px; }
 .region .sep { fill: var(--ink-3); }
 
 /* A region that carries its own source markup keeps it for the figure to read

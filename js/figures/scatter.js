@@ -1,33 +1,33 @@
 /* ===========================================================================
-   The agent slide — a sequence that branches.
+   The agent slide — a thread that keeps branching.
 
-   The bread slide is a schedule: one column, top to bottom, every action
-   followed by its wait. This slide uses the same vocabulary and the same type,
-   and changes only the shape. My own thread runs across the page. Every time I
-   switch away, the thing I switch to sprouts its own line at a right angle —
-   "as if the activities I engage in while waiting sprout their own timelines
-   which stretch out in orthogonal directions."
+   The bread slide is a schedule: one column, each action followed by its
+   wait. This slide keeps that vocabulary — activities in ink, the time between
+   them in red — and changes only the shape.
 
-   The words live in index.html, not here, as a nested list:
+   My own thread runs across the page, written on a single ruled line. Every
+   switch sprouts a thread of its own. It leaves the main line at a right
+   angle, up or down, then turns and runs horizontally, and may turn again: a
+   staircase away from where I started. A turn with nothing after it trails
+   off, a thread left hanging.
 
-     <ol class="sequence">
-       <li>prompt agent 1</li>
-       <li class="wait">wait</li>                  red: a rubric
-       <li class="switch">switch                   red: an interruption
-         <ol><li>prompt agent 2</li> …</ol>        the branch it sprouts
-       </li>
-     </ol>
+   Text is always horizontal, sitting on its rule. The vertical strokes are
+   only hairlines, so nothing has to be read sideways.
 
-   so the sequence can be edited without touching code. Each branch is one
-   step, revealed in order. If you add or remove a branch, update data-steps
-   on the <section> to match.
+   The words live in index.html as a nested list (see the comment above the
+   slide there); this file only draws them. Each branch is one step, revealed
+   in order.
    =========================================================================== */
 
-import { svg, el, awaiting } from './svg.js';
+import { svg, el, line, awaiting } from './svg.js';
 
-const SEP = 26;           // space either side of the separating dot
-const DROP = 40;          // hairline from the main line down to a branch
-const BRANCH_GAP = 14;    // between the hairline's end and the branch text
+const SEP = 14;        // either side of the dot between two words
+const RULE = 10;       // the rule sits this far below the text's baseline
+const INSET = 10;      // a branch's text starts this far right of its riser
+const TAIL = 12;       // a rule runs this far past its last word
+const RISE = 80;       // default length of a turn, if data-rise is absent
+
+/* --- reading the markup ---------------------------------------------------- */
 
 /* The text of an <li> without the text of any list nested inside it. */
 function ownText(li) {
@@ -39,87 +39,110 @@ function ownText(li) {
     .trim();
 }
 
-function readSequence(source) {
-  return [...source.children].map((li) => {
+/* One <ol> -> a flat list of tokens: activities, durations, turns, switches.
+   A switch carries its own branch, read the same way, recursively. */
+function readTokens(ol) {
+  return [...ol.children].map((li) => {
+    if (li.classList.contains('turn')) {
+      return { kind: 'turn', rise: Number(li.dataset.rise || RISE) };
+    }
+    if (li.classList.contains('t')) {
+      return { kind: 't', text: li.textContent.trim() };
+    }
     const nested = li.querySelector(':scope > ol');
     return {
+      kind: 'act',
       text: ownText(li),
-      kind: li.classList.contains('wait') ? 'wait'
-        : li.classList.contains('switch') ? 'switch'
-          : 'do',
-      branch: nested ? [...nested.children].map((c) => c.textContent.trim()) : null,
+      dir: li.dataset.dir === 'down' ? 1 : -1,          // SVG y grows downwards
+      branch: nested ? readTokens(nested) : null,
     };
   });
+}
+
+/* --- drawing ------------------------------------------------------------------ */
+
+/* Writes one horizontal run of words starting at x on the given baseline,
+   separated by dots — "prompt agent 1 · 30 s · accept · …" — and returns where
+   it ended. Every activity that sprouts a branch records the point, just after
+   the word and before its dot, where its branch will leave. */
+function writeRun(parent, tokens, x, baseline, cls) {
+  const sprouts = [];
+  tokens.forEach((tok, i) => {
+    if (i > 0) {
+      x += SEP;
+      el('text', { x, y: baseline, class: `${cls} sep`, 'text-anchor': 'middle' }, parent)
+        .textContent = '·';
+      x += SEP;
+    }
+    const t = el('text', { x, y: baseline, class: tok.kind === 't' ? `${cls} t` : cls }, parent);
+    t.textContent = tok.text;
+    x += t.getComputedTextLength();
+    if (tok.branch) sprouts.push({ x: x + SEP / 2, tok });
+  });
+  return { end: x, sprouts };
+}
+
+/* Draws a branch from a point on its parent's rule. Turns go vertical in the
+   branch's direction; whatever follows a turn is written horizontally from
+   the top (or bottom) of that turn, on a rule of its own. The next turn
+   leaves from the right-hand end of that rule. */
+function drawBranch(parent, tokens, x, ruleY, dir) {
+  // A branch always leaves its parent vertically, even if the markup forgot
+  // to say so.
+  if (tokens[0]?.kind !== 'turn') tokens = [{ kind: 'turn', rise: RISE }, ...tokens];
+
+  let px = x;
+  let py = ruleY;
+
+  for (let i = 0; i < tokens.length; i += 1) {
+    const turn = tokens[i];
+    if (turn.kind !== 'turn') continue;
+
+    const ny = py + dir * turn.rise;
+    line(parent, px, py, px, ny, 'rule');
+    py = ny;
+
+    // Everything up to the next turn is one horizontal run.
+    const run = [];
+    while (tokens[i + 1] && tokens[i + 1].kind !== 'turn') run.push(tokens[(i += 1)]);
+    if (!run.length) continue;                        // a turn that trails off
+
+    const { end } = writeRun(parent, run, px + INSET, py - RULE, 'voice branch');
+    line(parent, px, py, end + TAIL, py, 'rule');
+    px = end + TAIL;
+  }
 }
 
 export async function render(container) {
   const source = container.querySelector('ol.sequence');
   if (!source) return awaiting(container, 'no sequence in the markup');
 
-  // Layout depends on measured text widths, and a width measured in a
-  // fallback font would put every junction in the wrong place.
+  // Layout depends on measured text widths; a width measured in a fallback
+  // font would put every junction in the wrong place.
   await document.fonts.ready;
 
-  const items = readSequence(source);
-
+  const tokens = readTokens(source);
   const root = svg('0 0 10 10');
   container.appendChild(root);
 
-  /* --- the main line --------------------------------------------------------
-     Laid out word by word so that each "switch" knows its own centre: that is
-     where its branch hangs. */
+  /* --- the main line: my own thread ----------------------------------------- */
 
-  const y = 0;
-  let x = 0;
+  const { end, sprouts } = writeRun(root, tokens, 0, 0, 'voice');
+  line(root, 0, RULE, end + TAIL, RULE, 'rule');
 
-  items.forEach((item, i) => {
-    if (i > 0) {
-      el('text', { x: x + SEP, y, class: 'voice sep', 'text-anchor': 'middle' }, root)
-        .textContent = '·';
-      x += SEP * 2;
-    }
-    const red = item.kind !== 'do';
-    const t = el('text', { x, y, class: red ? 'voice rubric' : 'voice' }, root);
-    t.textContent = item.text;
-    const w = t.getComputedTextLength();
-    item.cx = x + w / 2;
-    x += w;
+  /* --- the branches ------------------------------------------------------------
+     One group per branch, revealed one keypress at a time. Class "agent": they
+     arrive on the frame, with no fade. */
+
+  sprouts.forEach(({ x, tok }, i) => {
+    const g = el('g', { class: 'agent', 'data-step': i + 1 }, root);
+    drawBranch(g, tok.branch, x, RULE, tok.dir);
   });
 
-  /* --- the branches ----------------------------------------------------------
-     One group per branch, revealed one keypress at a time. Class "agent": they
-     arrive on the frame, with no fade. The text is rotated a quarter turn so
-     it reads top to bottom, like the title on a book's spine. */
-
-  let step = 0;
-
-  for (const item of items) {
-    if (!item.branch) continue;
-    step += 1;
-
-    const g = el('g', { class: 'agent', 'data-step': step }, root);
-
-    el('line', {
-      x1: item.cx, y1: y + 14, x2: item.cx, y2: y + 14 + DROP, class: 'rule',
-    }, g);
-
-    const top = y + 14 + DROP + BRANCH_GAP;
-    const t = el('text', {
-      class: 'voice branch',
-      'dominant-baseline': 'central',
-      transform: `translate(${item.cx} ${top}) rotate(90)`,
-    }, g);
-
-    item.branch.forEach((word, i) => {
-      if (i > 0) el('tspan', { class: 'sep' }, t).textContent = '  ·  ';
-      el('tspan', {}, t).textContent = word;
-    });
-  }
-
-  /* --- fit ------------------------------------------------------------------
-     The drawing is sized to its own contents, at 1:1 where it fits and
-     smaller only if the main line runs wider than the slide. Hidden branches
-     still count, so nothing shifts as they are revealed. */
+  /* --- fit -----------------------------------------------------------------------
+     Sized to its own contents: 1:1 where it fits, smaller only if it runs wider
+     than the slide. Hidden branches still count, so nothing shifts as they
+     are revealed. */
 
   const bb = root.getBBox();
   const pad = 6;
