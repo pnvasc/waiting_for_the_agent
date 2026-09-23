@@ -135,7 +135,7 @@ body {
    printed running head of the page. */
 .kicker {
   font-family: var(--mono);
-  font-size: 19px;
+  font-size: 26px;
   font-weight: 400;
   letter-spacing: .16em;
   text-transform: lowercase;

@@ -101,4 +101,4 @@ in place; nothing is stubbed in their place.
 
 ## Still to write
 
-Two visible `[PAULA: …]` placeholders, on slides 11 and 15.
+One visible `[PAULA: …]` placeholder, on slide 15.

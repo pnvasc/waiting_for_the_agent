@@ -48,9 +48,22 @@
    margin like the statements. */
 #s7b .word { font-size: 100px; line-height: 1; margin: 0; letter-spacing: -.02em; }
 
+/* 11 — Fifteen seconds. The statement keeps the height of two lines (2 x its
+   line-height of 1.26), the height of 11b's "Fifteen seconds / isn't worth
+   it." Both slides then centre the same block, so the first line does not
+   move when 11b adds the second. */
+#s11 .statement { min-height: 2.52em; }
+
 /* 13 — Frictionless. The real log, given as much width as the stage has. */
 #s13 .statement { font-size: 40px; max-width: 46ch; }
 #s13 #region-focus-timeline { height: 360px; margin-top: 44px; }
+
+/* 13b — Because. Two long sentences: a wider measure than .long, so each
+   breaks once, in its own place, rather than three times. */
+#s13b .statement { font-size: 46px; max-width: 38ch; }
+
+/* 14b — Waiting for Godot. Wide enough that each line stays whole. */
+#s14b .statement { max-width: none; }
 
 /* 15 — Delayed Parousia. */
 #s15 .statement { max-width: 22ch; }
