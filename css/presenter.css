@@ -74,7 +74,7 @@ body {
   aspect-ratio: 16 / 9;
   border: 1px solid var(--ink-3);
   overflow: hidden;
-  background: var(--paper);
+  background: var(--grain-fine), var(--grain-mottle), var(--paper);
 }
 
 .preview .stage {

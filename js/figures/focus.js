@@ -5,8 +5,8 @@
    frontmost. The data is the real focus log: one record per *switch*, so a
    record's dwell is the distance to the next one.
 
-   Three conventions are carried over from plot_focus.py so that swapping the
-   stub for a full processed run does not change what the picture means:
+   Three conventions are carried over from plot_focus.py so that swapping in a
+   longer processed run does not change what the picture means:
 
      * a gap over SESSION_GAP is the logger being down, not attention;
      * a single-app stretch longer than DWELL_CAP is away-from-keyboard, and

@@ -38,6 +38,15 @@
   --stage-h: 900px;
 
   --fade: 900ms cubic-bezier(.4, 0, .2, 1);
+
+  /* Paper grain: two tiles of SVG noise, drawn in ink at a low opacity over
+     the paper colour. A fine speckle for the tooth of the sheet, and a large,
+     slow mottle for the unevenness of its surface. Both are inline, so the
+     deck still makes no network request. --grain-strength is the one knob:
+     0 is flat paper; raise it if the projector washes the texture out. */
+  --grain-strength: 2.5;
+  --grain-fine: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' seed='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.09 0 0 0 0 0.08 0 0 0 0 0.06 0.36 0 0 0 -0.14'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)'/%3E%3C/svg%3E");
+  --grain-mottle: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1024' height='1024'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.0078125' numOctaves='2' seed='8' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.09 0 0 0 0 0.08 0 0 0 0 0.06 0.09 0 0 0 -0.035'/%3E%3C/filter%3E%3Crect width='1024' height='1024' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 :root[data-theme='night'] {
@@ -46,6 +55,9 @@
   --ink-2:  #928b7e;
   --ink-3:  #4a463d;
   --rubric: #c2544a;    /* lifted so it still reads as red, not brown, in the dark */
+  /* In the dark the grain is light fibres on a dark sheet. */
+  --grain-fine: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' seed='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.93 0 0 0 0 0.91 0 0 0 0 0.86 0.26 0 0 0 -0.10'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)'/%3E%3C/svg%3E");
+  --grain-mottle: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1024' height='1024'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.0078125' numOctaves='2' seed='8' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.93 0 0 0 0 0.91 0 0 0 0 0.86 0.06 0 0 0 -0.022'/%3E%3C/filter%3E%3Crect width='1024' height='1024' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 /* --- page ----------------------------------------------------------------- */
@@ -60,6 +72,18 @@ html, body {
   overflow: hidden;
   /* The theme switch is the one page-wide fade; everything else is per-element. */
   transition: background-color var(--fade), color var(--fade);
+}
+
+/* The grain lies over the whole window, under the stage, at screen scale:
+   the stage itself is transparent, so there is no seam where it ends, and
+   the grain stays the same size on a laptop and on a projector. */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: var(--grain-fine), var(--grain-mottle);
+  opacity: var(--grain-strength);
 }
 
 body {
@@ -83,7 +107,7 @@ body {
   width: var(--stage-w);
   height: var(--stage-h);
   transform-origin: center center;
-  background: var(--paper);
+  background: transparent;   /* the paper, and its grain, are the page's */
 }
 
 /* --- slides --------------------------------------------------------------- */
@@ -291,15 +315,19 @@ body {
    waits, and a size down from the activities they separate. */
 .region text.voice.t { fill: var(--rubric); font-size: 20px; }
 .region text.voice.branch.t { font-size: 17px; }
-/* The agent slide's thread: the line I am on, and the faint line of the thread
-   I have left, which carries on without me while I am away. */
-.region .thread { stroke: var(--ink-2); stroke-width: 1; fill: none; }
+/* The agent slide's git history: lanes, my path between them, commits. An
+   agent's lane is a little heavier: it runs on its own. A switch is a ring. */
+.region .lane { stroke: var(--ink-2); stroke-width: 1.2; fill: none; }
+.region .lane.agent { stroke: var(--ink); stroke-width: 2; }
+.region .lane.path { stroke: var(--ink); stroke-width: 1.4; }
+.region .ring { fill: var(--paper); stroke: var(--ink); stroke-width: 1.6; }
 .region .absent { stroke: var(--ink-3); stroke-width: 1.2; stroke-dasharray: 1 6; stroke-linecap: round; fill: none; }
-.region .sep { fill: var(--ink-3); }
+/* A patch of paper behind a label, so it reads where a line runs through it. */
+.region text.halo { paint-order: stroke; stroke: var(--paper); stroke-width: 6px; stroke-linejoin: round; }
 
 /* A region that carries its own source markup keeps it for the figure to read
    and never shows it: the drawing replaces it. */
-.region > ol.sequence { display: none; }
+.region > ol.history { display: none; }
 
 /* Placeholder shown while a region has no data yet. */
 .region .awaiting {
@@ -365,7 +393,7 @@ body {
   position: fixed;
   inset: 0;
   z-index: 50;
-  background: var(--paper);
+  background: var(--grain-fine), var(--grain-mottle), var(--paper);
 }
 
 :root[data-theme='night'] #blank { background: #000; }

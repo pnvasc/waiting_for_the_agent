@@ -2,12 +2,10 @@
    Data loading.
 
    Everything under /data is a plain JSON file fetched from the same local
-   server. Files carry "stub": true while they hold a slice rather than the
-   full processed run, so a figure can say so if it wants to.
-
-   The files are currently small real slices of the logs sitting next to this
-   deck (focus.jsonl, trace.jsonl), not invented numbers. Replacing a stub with
-   a full run is a file swap; no code here changes.
+   server. The files are real slices of the logs sitting next to this deck
+   (focus.jsonl, trace.jsonl), not invented numbers, each with a "source"
+   field saying where it came from. Replacing one with a longer run is a
+   file swap; no code here changes.
 
    hook: a future processing step writes the same shapes to the same paths.
    =========================================================================== */

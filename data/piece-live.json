@@ -1,0 +1,315 @@
+{
+ "kind": "live",
+ "built": "2026-09-24T22:48:18",
+ "start": "2026-09-24T22:18:18",
+ "duration": 1800.0,
+ "voices": [
+  {
+   "voice": 1,
+   "session": "d4187569-c7ee-4bdf-a9fe-b4630e1c5148",
+   "entry": 251.367,
+   "notes": [
+    {
+     "t": 260.635,
+     "d": 0.38,
+     "tool": "Bash"
+    },
+    {
+     "t": 273.632,
+     "d": 5.028,
+     "tool": "Bash"
+    },
+    {
+     "t": 278.685,
+     "d": 0.048,
+     "tool": "Read"
+    },
+    {
+     "t": 653.262,
+     "d": 409.826,
+     "tool": "Bash"
+    },
+    {
+     "t": 1061.599,
+     "d": 39.755,
+     "tool": "Bash"
+    },
+    {
+     "t": 1098.899,
+     "d": 109.729,
+     "tool": "Bash"
+    },
+    {
+     "t": 1114.546,
+     "d": 0.029,
+     "tool": "Write"
+    },
+    {
+     "t": 1192.222,
+     "d": 0.024,
+     "tool": "Write"
+    },
+    {
+     "t": 1205.154,
+     "d": 14.833,
+     "tool": "Bash"
+    },
+    {
+     "t": 1217.364,
+     "d": 12.594,
+     "tool": "Bash"
+    },
+    {
+     "t": 1227.633,
+     "d": 14.458,
+     "tool": "Bash"
+    },
+    {
+     "t": 1240.423,
+     "d": 533.818,
+     "tool": "Bash"
+    },
+    {
+     "t": 1774.124,
+     "d": 0.5,
+     "tool": "Bash"
+    },
+    {
+     "t": 1797.578,
+     "d": 0.5,
+     "tool": "Bash"
+    }
+   ],
+   "summons": [
+    {
+     "t": 282.973,
+     "kind": "Stop"
+    },
+    {
+     "t": 695.444,
+     "kind": "Stop"
+    },
+    {
+     "t": 1257.663,
+     "kind": "Stop"
+    },
+    {
+     "t": 1524.327,
+     "kind": "Stop"
+    }
+   ],
+   "prompts": [
+    {
+     "t": 251.367
+    },
+    {
+     "t": 640.771
+    },
+    {
+     "t": 1025.356
+    },
+    {
+     "t": 1498.378
+    },
+    {
+     "t": 1763.102
+    }
+   ]
+  }
+ ],
+ "light": "stretch",
+ "focus": [
+  {
+   "t": 8.0,
+   "kind": "return"
+  },
+  {
+   "t": 38.0,
+   "kind": "depart"
+  },
+  {
+   "t": 71.0,
+   "kind": "return"
+  },
+  {
+   "t": 177.0,
+   "kind": "depart"
+  },
+  {
+   "t": 390.0,
+   "kind": "return"
+  },
+  {
+   "t": 637.0,
+   "kind": "depart"
+  },
+  {
+   "t": 673.0,
+   "kind": "return"
+  },
+  {
+   "t": 684.0,
+   "kind": "depart"
+  },
+  {
+   "t": 685.0,
+   "kind": "return"
+  },
+  {
+   "t": 771.0,
+   "kind": "depart"
+  },
+  {
+   "t": 794.0,
+   "kind": "return"
+  },
+  {
+   "t": 888.0,
+   "kind": "depart"
+  },
+  {
+   "t": 1292.0,
+   "kind": "return"
+  },
+  {
+   "t": 1310.0,
+   "kind": "depart"
+  },
+  {
+   "t": 1336.0,
+   "kind": "return"
+  },
+  {
+   "t": 1356.0,
+   "kind": "depart"
+  },
+  {
+   "t": 1360.0,
+   "kind": "return"
+  },
+  {
+   "t": 1429.0,
+   "kind": "depart"
+  },
+  {
+   "t": 1448.0,
+   "kind": "return"
+  },
+  {
+   "t": 1452.0,
+   "kind": "depart"
+  },
+  {
+   "t": 1507.0,
+   "kind": "return"
+  },
+  {
+   "t": 1579.0,
+   "kind": "depart"
+  },
+  {
+   "t": 1600.0,
+   "kind": "return"
+  },
+  {
+   "t": 1723.0,
+   "kind": "depart"
+  },
+  {
+   "t": 1724.0,
+   "kind": "return"
+  },
+  {
+   "t": 1729.0,
+   "kind": "depart"
+  },
+  {
+   "t": 1789.0,
+   "kind": "return"
+  },
+  {
+   "t": 1930.0,
+   "kind": "depart"
+  },
+  {
+   "t": 1934.0,
+   "kind": "return"
+  },
+  {
+   "t": 1946.0,
+   "kind": "depart"
+  },
+  {
+   "t": 2111.0,
+   "kind": "return"
+  },
+  {
+   "t": 2131.0,
+   "kind": "depart"
+  },
+  {
+   "t": 2365.0,
+   "kind": "return"
+  },
+  {
+   "t": 2513.0,
+   "kind": "depart"
+  },
+  {
+   "t": 2515.0,
+   "kind": "return"
+  },
+  {
+   "t": 2516.0,
+   "kind": "depart"
+  },
+  {
+   "t": 2613.0,
+   "kind": "return"
+  },
+  {
+   "t": 2656.0,
+   "kind": "depart"
+  },
+  {
+   "t": 3006.0,
+   "kind": "return"
+  },
+  {
+   "t": 3008.0,
+   "kind": "depart"
+  },
+  {
+   "t": 3141.0,
+   "kind": "return"
+  },
+  {
+   "t": 3162.0,
+   "kind": "depart"
+  },
+  {
+   "t": 3184.0,
+   "kind": "return"
+  },
+  {
+   "t": 3454.0,
+   "kind": "depart"
+  },
+  {
+   "t": 3473.0,
+   "kind": "return"
+  },
+  {
+   "t": 3495.0,
+   "kind": "depart"
+  },
+  {
+   "t": 3515.0,
+   "kind": "return"
+  }
+ ],
+ "focus_from": {
+  "start": "2026-09-23T12:12:15",
+  "duration": 3600.0
+ }
+}

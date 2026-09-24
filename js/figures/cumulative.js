@@ -72,7 +72,7 @@ export function render(container, data) {
      empty quadrant the staircase leaves behind, so it never crosses the line. */
 
   const perHour = Math.round((checks.length / span) * 3600);
-  const rate = `${perHour} checks/hour${data.stub ? ' · stub' : ''}`;
+  const rate = `${perHour} checks/hour`;
   text(root, x0 + 18, y1 + 14, rate, { class: 'rubric' });
 
   return root;

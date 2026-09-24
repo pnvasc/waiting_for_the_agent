@@ -83,8 +83,8 @@ Every intended extension point is marked `// hook:` in the source.
 
 ## Data
 
-`data/*.json` currently hold small **real** slices of the logs sitting in this
-directory, marked `"stub": true` and carrying a `"source"` field:
+`data/*.json` hold **real** slices of the logs sitting in this directory, each
+carrying a `"source"` field:
 
 | file | from | used by |
 |---|---|---|
@@ -92,12 +92,12 @@ directory, marked `"stub": true` and carrying a `"source"` field:
 | `focus.json` | `focus.jsonl`, one continuous 60-minute run | slide 13 |
 | `checks.json` | the same run: every switch back to an agent window | slide 7 |
 
-Replacing a stub with a full processed run is a file swap; no code changes.
+Replacing a slice with a longer processed run is a file swap; no code changes.
 
 ## Not built yet
 
 Audio, chimes, trace replay, and the data-processing pipeline. The hooks are
-in place; nothing is stubbed in their place.
+in place; nothing stands in for them.
 
 ## Still to write
 

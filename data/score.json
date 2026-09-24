@@ -1,6 +1,5 @@
 {
   "source": "trace.jsonl, first 28 intervals, via trace2score.py's interval logic",
-  "stub": true,
   "title": "Session e63e10f2",
   "notes": [
     {

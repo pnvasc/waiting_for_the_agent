@@ -101,79 +101,56 @@
     </section>
 
     <!-- 3c ─ Operating agents --------------------------------------------
-         Same vocabulary as the bread slide, different shape. One thread,
-         read left to right like a score, over three lines, all visible at once.
-         My own thread is the main line. Each switch takes it off the main
-         line — up or down — onto a tilted line of its own, and a later
-         switch brings it back; while I'm away a faint line carries on
-         underneath (agent 1 still working without me). A detour can take
-         detours of its own, further out, before it comes back.
+         Same vocabulary as the bread slide, drawn as a git history: lanes
+         left to right, branching off and merging back. Each agent is a
+         branch that keeps running while I am elsewhere; email, Teams and the
+         report are short lanes that exist only while I am in them. Every
+         activity is a commit on the lane it happened in; a switch is a
+         commit (a ring) where I leave a lane, and the curve after it is me
+         changing windows. The red seconds sit between two commits.
 
-         The words are edited here; figures/scatter.js only draws them.
-           <li>…</li>                an activity ("switch" is one too)
-           <li class="t">…</li>      seconds between two activities (red)
-           <li class="switch"        leaves the line it is on; the <ol>
-               data-dir="up|down">   inside it is the detour, which ends
-             switch <ol>…</ol>       with the switch that comes back.
-                                     Nested detours go further the same way.
-           <li class="break">        carry on at the start of the next line
-           data-seed on the <ol>     the tilts, heights and slants are drawn
-                                     from this seed; change it for another
-                                     arrangement of the same words.          -->
+         The words and lanes are edited here; figures/history.js draws them.
+           data-lanes      lane names, top to bottom
+           data-parallel   lanes that run on their own (the agents)
+           data-open       lanes still running when the slide ends
+           <li data-lane="…">                 an activity on that lane
+           <li data-lane="…" class="switch">  leaving that lane
+           <li class="t">                     seconds to the next activity
+         A switch always sits between two tasks: it leaves the lane of the
+         task before it for the lane of the task after it.                   -->
     <section class="slide" id="s3c" data-motion="agent">
-      <div class="region" id="region-scatter">
-        <ol class="sequence" data-seed="7">
-          <li>prompt agent 1</li><li class="t">30 s</li>
-          <li class="switch" data-dir="up">switch
-            <ol>
-              <li class="t">2 s</li><li>prompt agent 2</li><li class="t">20 s</li><li>switch</li>
-            </ol></li>
-          <li class="t">4 s</li><li>accept</li><li class="t">3 s</li>
-          <li class="switch" data-dir="down">switch
-            <ol>
-              <li class="t">5 s</li><li>accept</li><li class="t">3 s</li>
-              <li class="switch">switch
-                <ol>
-                  <li class="t">4 s</li><li>email</li><li class="t">30 s</li><li>switch</li>
-                </ol></li>
-              <li class="t">2 s</li><li>switch</li>
-            </ol></li>
-
-          <li class="break"></li>
-
-          <li class="t">3 s</li>
-          <li class="switch" data-dir="up">switch
-            <ol>
-              <li class="t">1 s</li><li>check agent 2</li><li class="t">6 s</li><li>switch</li>
-            </ol></li>
-          <li class="t">6 s</li><li>check agent 1</li><li class="t">15 s</li>
-          <li class="switch" data-dir="up">switch
-            <ol>
-              <li class="t">2 s</li><li>prompt agent 3</li><li class="t">5 s</li>
-              <li class="switch">switch
-                <ol>
-                  <li class="t">10 s</li><li>report</li><li class="t">20 s</li><li>switch</li>
-                </ol></li>
-              <li class="t">3 s</li><li>switch</li>
-            </ol></li>
-
-          <li class="break"></li>
-
-          <li class="t">6 s</li>
-          <li class="switch" data-dir="down">switch
-            <ol>
-              <li class="t">3 s</li><li>teams</li><li class="t">8 s</li>
-              <li class="switch">switch
-                <ol>
-                  <li class="t">2 s</li><li>email</li><li class="t">12 s</li><li>switch</li>
-                </ol></li>
-              <li class="t">4 s</li><li>switch</li>
-            </ol></li>
-          <li class="t">5 s</li><li>accept</li>
+      <div class="region" id="region-history">
+        <ol class="history"
+            data-lanes="agent 3, agent 2, agent 1, email, teams, report"
+            data-parallel="agent 1, agent 2, agent 3"
+            data-open="agent 1, agent 3">
+          <li data-lane="agent 1">prompt agent 1</li><li class="t">30 s</li>
+          <li data-lane="agent 1" class="switch">switch</li><li class="t">2 s</li>
+          <li data-lane="agent 2">prompt agent 2</li><li class="t">20 s</li>
+          <li data-lane="agent 2" class="switch">switch</li><li class="t">4 s</li>
+          <li data-lane="agent 1">accept</li><li class="t">3 s</li>
+          <li data-lane="agent 1" class="switch">switch</li><li class="t">5 s</li>
+          <li data-lane="agent 2">accept</li><li class="t">3 s</li>
+          <li data-lane="agent 2" class="switch">switch</li><li class="t">4 s</li>
+          <li data-lane="email">email</li><li class="t">30 s</li>
+          <li data-lane="email" class="switch">switch</li><li class="t">6 s</li>
+          <li data-lane="agent 2">check agent 2</li><li class="t">6 s</li>
+          <li data-lane="agent 2" class="switch">switch</li><li class="t">6 s</li>
+          <li data-lane="agent 1">check agent 1</li><li class="t">15 s</li>
+          <li data-lane="agent 1" class="switch">switch</li><li class="t">2 s</li>
+          <li data-lane="agent 3">prompt agent 3</li><li class="t">5 s</li>
+          <li data-lane="agent 3" class="switch">switch</li><li class="t">10 s</li>
+          <li data-lane="report">report</li><li class="t">20 s</li>
+          <li data-lane="report" class="switch">switch</li><li class="t">12 s</li>
+          <li data-lane="teams">teams</li><li class="t">8 s</li>
+          <li data-lane="teams" class="switch">switch</li><li class="t">2 s</li>
+          <li data-lane="email">email</li><li class="t">12 s</li>
+          <li data-lane="email" class="switch">switch</li><li class="t">9 s</li>
+          <li data-lane="agent 1">accept</li>
         </ol>
       </div>
       <aside class="notes">
-        <p>All at once, no presses. Read it left to right: agent 2; agent 2 again, and from there email; a glance at agent 2; then on the second line agent 3, and from there the report; Teams, and from there email. Each detour comes back to the main line; the faint line underneath is agent 1 working while I am elsewhere. The red numbers are seconds between activities, like the waits on the bread slide.</p>
+        <p>All at once, no presses. Read the words along the top left to right: it is the same sequence as before. Below, the history: agent 1 runs the whole way; agent 2 branches off and is merged back when I check it; agent 3 branches off and is still running at the end. Email, the report and Teams are short lanes that exist only while I am in them. The rings are the switches; the red numbers are seconds between activities, like the waits on the bread slide.</p>
         <p>[PAULA: notes for the agent sequence]</p>
       </aside>
     </section>
@@ -424,7 +401,7 @@
       <p class="kicker">Delayed Parousia</p>
       <p class="statement">The reward of finishing a task is being able to
         start a new one.</p>
-      <p class="placeholder">[PAULA: ending]</p>
+      <p class="placeholder"> </p>
       <aside class="notes">
         <p>The promise: AI will make us productive and give us leisure, in
           Russell's sense. It won't replace us, it will free us.</p>

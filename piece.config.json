@@ -1,0 +1,62 @@
+{
+  "_about": "Every choice in the piece lives here. tools/build_piece.py reads the 'build', 'choose', 'time' and 'pitch' sections; the player (stage 2) reads the same file. Keys starting with _ are notes, ignored by the code.",
+
+  "build": {
+    "_about": "How the logs become events.",
+    "sitting_gap": 1200,
+    "_sitting_gap": "seconds of silence in both logs together that end a sitting",
+    "default_duration": 0.5,
+    "_default_duration": "seconds given to a tool call whose PostToolUse never came",
+    "max_tool_duration": 600,
+    "_max_tool_duration": "a PostToolUse later than this after its PreToolUse is not its pair",
+    "agent_apps": ["Code", "Terminal"],
+    "_agent_apps": "PAULA: check. Apps that count as being with the agents; leaving them is a departure, coming back a return. Your focus log has Code (VS Code) 162 times, Claude 60, Terminal 15.",
+    "min_tool_calls": 10,
+    "_min_tool_calls": "a session's stretch needs this many tool calls to go in the pool"
+  },
+
+  "choose": {
+    "_about": "Which three stretches of real work are laid over each other and played as if simultaneous. 'auto' takes the busiest stretch of each of the three busiest sessions; or list stretch ids from data/pool.json, in voice order.",
+    "voices": "auto",
+    "count": 3
+  },
+
+  "light": {
+    "_about": "Where the window switching (the light) comes from.",
+    "source": "own",
+    "_source": "own: each agent brings the switching from its own time. stretch: the stretch below is laid over the whole piece instead, independent of the agents.",
+    "stretch": { "start": "2026-09-23T12:12:15", "minutes": 60 },
+    "_stretch": "a stretch of focus.jsonl, local time. The default is the hour on slide 13: 69 window switches, of which 47 leave or come back to the agent apps.",
+    "live_fallback": true,
+    "_live_fallback": "for --last-minutes: if no switching was logged in the window (the focus logger not running), use the stretch above instead"
+  },
+
+  "time": {
+    "_about": "How real seconds become played seconds.",
+    "mode": "compressed",
+    "_mode": "compressed: fit the piece into 'target' seconds. realtime: play 'excerpt' seconds from 'offset' at 1:1.",
+    "target": 45,
+    "gap_cap": 45,
+    "_gap_cap": "in compressed mode, an idle stretch longer than this many real seconds is shortened to it first, so hours of waiting do not become silence",
+    "entries": [0, 5, 10],
+    "_entries": "played second at which each voice comes in; each voice is then fitted into the time left after its entry",
+    "tail": 1.5,
+    "_tail": "seconds kept free at the end of a compressed piece for the last bells to ring out",
+    "offset": 0,
+    "excerpt": 60
+  },
+
+  "pitch": {
+    "_about": "Also used for the MIDI file. MIDI note numbers; D minor pentatonic.",
+    "scale": [0, 3, 5, 7, 10],
+    "voice_roots": [38, 50, 62],
+    "_voice_roots": "one register per agent, like a consort of viols: bass, tenor, treble",
+    "tool_degrees": { "Read": 0, "Grep": 0, "Glob": 0, "Edit": 2, "MultiEdit": 2, "Write": 3, "Bash": "tick" },
+    "_tool_degrees": "degree of the scale a tool sounds on, within its voice's register. 'tick' is a dry percussive tick, not a pitch. Anything unlisted uses 'other_degree'.",
+    "other_degree": 4,
+    "summons_degree": 7,
+    "_summons_degree": "the bell: this many scale steps above the voice's root, so it sits in the voice's own register but above its texture",
+    "prompt_root": 57,
+    "prompt_degrees": [0, 2, 4, 1, 3]
+  }
+}

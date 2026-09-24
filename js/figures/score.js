@@ -153,7 +153,6 @@ export function render(container, data, options = {}) {
   const dur = text(root, right, H - 22, `${notes.length} notes · ${minutes} min`, {
     class: 'rubric', 'text-anchor': 'end',
   });
-  if (data.stub) dur.textContent += ' · stub';
 
   return root;
 }

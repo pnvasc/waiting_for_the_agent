@@ -13,11 +13,10 @@
 /* 2 — Confession. Centred, one line, spoken. */
 #s2 .statement { max-width: 26ch; }
 
-/* 3c — Operating agents. Wider margins than the rest: the main line is long,
-   and the drawing is sized to its content (1:1 where it fits). */
+/* 3c — Operating agents. Wider margins than the rest: the history is long
+   and wants the whole width of the stage. */
 #s3c { padding: 70px 56px; justify-content: center; }
-#s3c #region-scatter { margin-top: 0; }
-#s3c #region-scatter svg { width: auto; height: auto; max-width: 100%; }
+#s3c #region-history { margin-top: 0; }
 
 /* 4 — The scene. Text above, the four-stave polyphony below it. */
 #s4 { justify-content: center; }
@@ -32,13 +31,13 @@
 #s5 .statement { font-size: 44px; max-width: 34ch; }
 #s5 #region-box { flex: 1; min-height: 0; margin-top: 28px; }
 
-/* 6 — The box returns small, with only the Agent corner on it. Its container
-   is sized to the mini geometry in box.js (480 x 430) so the drawing renders
-   at about 1:1 and its labels stay readable from the back. */
+/* 6 — The box returns, with only the Agent corner on it. Its container is
+   the mini geometry in box.js (480 x 430) at exactly 1.4x, so the drawing
+   fills it with no slack and the caption can line up with its left axis. */
 #s6 { justify-content: center; }
-#s6 .col-figure { align-self: flex-start; width: 480px; margin-top: 36px; }
-#s6 #region-box-mini { height: 400px; margin-top: 0; }
-#s6 .caption { margin: 0 0 0 78px; }   /* 78px = the box's own left axis */
+#s6 .col-figure { align-self: flex-start; width: 672px; }
+#s6 #region-box-mini { height: 602px; margin-top: 0; }
+#s6 .caption { margin: 0 0 0 109px; }   /* 109px = the box's left axis, 78 x 1.4 */
 
 /* 7 — Variable interval. The cumulative record earns the lower two thirds. */
 #s7 .statement { font-size: 50px; max-width: 30ch; }
