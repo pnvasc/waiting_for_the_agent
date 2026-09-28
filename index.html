@@ -23,6 +23,8 @@
     data-motion="agent"     this slide cuts in with no fade (see deck.css).
     data-steps="4"          the slide reveals in 4 keypresses; the figure
                             module listens for 'step' and decides what appears.
+    hidden                  the slide is left out of the deck (not shown, not
+                            counted); remove the attribute to bring it back.
 
   All on-slide text is verbatim, either from the essay "Waiting time, waiting
   for time" or from Paula's notes. [PAULA: …] marks text still to be written;
@@ -118,7 +120,7 @@
            <li class="t">                     seconds to the next activity
          A switch always sits between two tasks: it leaves the lane of the
          task before it for the lane of the task after it.                   -->
-    <section class="slide" id="s3c" data-motion="agent">
+    <section class="slide" id="s3c" data-motion="agent" hidden>
       <div class="region" id="region-history">
         <ol class="history"
             data-lanes="agent 3, agent 2, agent 1, email, teams, report"
@@ -443,7 +445,8 @@
     <section class="slide" id="s17" data-motion="agent">
       <p class="word mono">THANK YOU</p>
       <p class="gloss">You can find the essay on
-        <span class="mono">vasconcelosblomberg.com</span></p>
+        <span class="mono">vasconcelosblomberg.com</span><img class="mark"
+        src="favicon-512.png" alt=""></p>
       <aside class="notes"></aside>
     </section>
 

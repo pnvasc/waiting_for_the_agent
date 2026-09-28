@@ -30,7 +30,7 @@
    =========================================================================== */
 
 import { svg, el, line, text } from './svg.js';
-import { loadPiece, schedule } from '../piece.js';
+import { loadPiece, program } from '../piece.js';
 
 const W = 1488;              // the slide's width inside its padding
 const H = 700;
@@ -65,7 +65,8 @@ export function draw(container, plan, cfg, { fit = false } = {}) {
   container.appendChild(root);
 
   const pc = cfg.pitch;
-  const total = plan.played;
+  const total = plan.total ?? plan.played;     // with the exposition, when it is on
+  const shift = total - plan.played;             // how much later the piece itself begins
   const pps = fit ? (RIGHT - LEFT) / total : PPS;
   const playX = LEFT + (RIGHT - LEFT) * PLAY_AT;
   const Y = (mid, deg) => mid + (2 - deg) * GAP;
@@ -82,11 +83,21 @@ export function draw(container, plan, cfg, { fit = false } = {}) {
 
   const entries = cfg.time.entries || [];
   const voices = new Set(plan.events.map((e) => e.voice).filter((v) => v !== undefined));
+  const firstAt = {};                            // a voice's first sound (in the exposition, if on)
+  for (const e of plan.events) if (e.voice !== undefined && e.kind !== 'prompt') firstAt[e.voice] ??= e.at;
+  // The staff lines themselves do not scroll: they are redrawn across the
+  // visible width on every frame, from wherever their voice begins. (Long
+  // lines moved by a transform are not always repainted by the browser, and
+  // a staff looks the same wherever it is anyway.)
+  const staffLayer = el('g', {});
+  root.insertBefore(staffLayer, view);
+  const staves = [];
   const names = [];
   for (const row of ROWS) {
     if (row.voice !== 'me' && !voices.has(row.voice)) continue;
-    const from = row.voice === 'me' ? 0 : (entries[row.voice] ?? 0);
-    for (let i = -2; i <= 2; i += 1) line(music, X(from), row.y + i * GAP, X(total) + 40, row.y + i * GAP);
+    const from = row.voice === 'me' ? 0
+      : Math.min((entries[row.voice] ?? 0) + shift, firstAt[row.voice] ?? Infinity);
+    for (let i = -2; i <= 2; i += 1) staves.push({ from, el: line(staffLayer, 0, row.y + i * GAP, 0, row.y + i * GAP) });
     line(music, X(from), row.y - 2 * GAP, X(from), row.y + 2 * GAP, 'stroke');   // where it begins
     const name = text(root, LEFT - 20, row.y + 5, row.name, { 'text-anchor': 'end' });
     names.push({ name, from });
@@ -103,7 +114,8 @@ export function draw(container, plan, cfg, { fit = false } = {}) {
   const accent = (parent, cx, cy) =>
     el('path', { d: `M ${cx - 5} ${cy - 3.5} L ${cx + 4} ${cy} L ${cx - 5} ${cy + 3.5}`, class: 'mark' }, parent);
   const hold = (x, y, seconds) => {
-    if (seconds * pps > 8) line(music, x + 6, y, x + seconds * pps, y, 'rule');
+    const end = Math.min(x + seconds * pps, X(total) + 40);   // never past the staff's end
+    if (end - x > 8) line(music, x + 6, y, end, y, 'rule');
   };
 
   for (const e of plan.events) {
@@ -167,6 +179,17 @@ export function draw(container, plan, cfg, { fit = false } = {}) {
 
   /* --- moving it ------------------------------------------------------------------ */
 
+  // Lay the staff lines across the staves, with the music `offset` units right.
+  function staffAt(offset) {
+    for (const s of staves) {
+      const x1 = Math.max(LEFT - 8, offset + X(s.from));
+      const x2 = Math.min(RIGHT, offset + X(total) + 40);
+      s.el.style.visibility = x2 > x1 ? 'visible' : 'hidden';
+      s.el.setAttribute('x1', x1.toFixed(1));
+      s.el.setAttribute('x2', x2.toFixed(1));
+    }
+  }
+
   function seek(t) {
     if (fit) {
       const x = LEFT + X(Math.min(Math.max(t, 0), total));
@@ -176,6 +199,7 @@ export function draw(container, plan, cfg, { fit = false } = {}) {
       return;
     }
     music.setAttribute('transform', `translate(${(playX - X(t)).toFixed(1)} 0)`);
+    staffAt(playX - X(t));
     // A voice's name shows once its staff has reached the playhead.
     for (const n of names) n.name.style.visibility = t >= n.from ? 'visible' : 'hidden';
   }
@@ -189,6 +213,7 @@ export function draw(container, plan, cfg, { fit = false } = {}) {
     head.setAttribute('x1', LEFT);
     head.setAttribute('x2', LEFT);
     music.setAttribute('transform', `translate(${LEFT} 0)`);
+    staffAt(LEFT);
   } else {
     seek(0);
   }
@@ -206,5 +231,5 @@ export async function render(container) {
   if (container.score) return container.score;
   const fit = Boolean(container.closest('.preview'))
     || matchMedia('(prefers-reduced-motion: reduce)').matches;
-  return draw(container, schedule(piece, cfg), cfg, { fit });
+  return draw(container, program(piece, cfg), cfg, { fit });
 }

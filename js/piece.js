@@ -186,6 +186,23 @@ function exposition(plan, cfg) {
   return { length: t, events, pulses: [pulse] };
 }
 
+/* Everything a performance plays, from its first second: the piece, and
+   before it the exposition when it is on. `total` is how long that is;
+   `played` is the piece's own length. The score is drawn from this too, so
+   what is seen and what is heard are the same list. */
+export function program(piece, cfg) {
+  const main = schedule(piece, cfg);
+  if (!cfg.exposition.on) return { ...main, total: main.played };
+  const x = exposition(main, cfg);
+  const shift = (list) => list.map((e) => ({ ...e, at: e.at + x.length, ...(e.until ? { until: e.until + x.length } : {}) }));
+  return {
+    ...main,
+    events: [...x.events, ...shift(main.events)],
+    pulses: [...x.pulses, ...shift(main.pulses)],
+    total: main.played + x.length,
+  };
+}
+
 /* --- performing --------------------------------------------------------------------- */
 
 export class Piece {
@@ -240,25 +257,15 @@ export class Piece {
     this.inst = new Instruments(this.ctx, this.cfg.sound);
     this.inst.mix(this.heard);
 
-    const main = schedule(piece, this.cfg);
-    let events = main.events;
-    let lightPulses = main.pulses;
-    let total = main.played;
-    if (this.cfg.exposition.on) {
-      const x = exposition(main, this.cfg);
-      const shift = (list) => list.map((e) => ({ ...e, at: e.at + x.length, ...(e.until ? { until: e.until + x.length } : {}) }));
-      events = [...x.events, ...shift(events)];
-      lightPulses = [...x.pulses, ...shift(lightPulses)];
-      total += x.length;
-    }
-    this.plan = { ...main, events, total, start: this.ctx.currentTime + 0.12 };
+    const { events, pulses: lightPulses, ...rest } = program(piece, this.cfg);
+    this.plan = { ...rest, events, pulses: lightPulses, start: this.ctx.currentTime + 0.12 };
     if (this.lights) this.lights.set(lightPulses);
     if (this.lights) this.lights.onPulse = (p) => this._emit('pulse', p);
 
     // Book notes a little ahead of the clock, on the clock.
     let booked = 0;
     let fired = 0;
-    const { start } = this.plan;
+    const { start, total } = this.plan;
     this._timer = setInterval(() => {
       const horizon = this.ctx.currentTime + LOOKAHEAD;
       while (booked < events.length && start + events[booked].at < horizon) {

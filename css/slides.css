@@ -67,6 +67,8 @@
    address in the machine's, in red so the room can find it. */
 #s17 .gloss { font-size: 48px; margin-top: 56px; max-width: none; }
 #s17 .gloss .mono { font-size: .86em; letter-spacing: .01em; color: var(--rubric); }
+/* The site's mark, after its address, about as tall as the text. */
+#s17 .gloss .mark { height: 1.4em; width: auto; margin-left: .25em; vertical-align: -.36em; }
 
 /* 9 — Bottleneck. The sentence, and under it the queue I make, running. */
 #s9 #region-bottleneck { height: 380px; margin-top: 64px; }

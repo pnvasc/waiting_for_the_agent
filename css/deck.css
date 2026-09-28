@@ -103,6 +103,8 @@ body {
   transition: opacity var(--fade), visibility 0s linear var(--fade);
 }
 
+.slide[hidden] { display: none; }   /* left out of the deck (engine.js) */
+
 .slide.is-current {
   opacity: 1;
   visibility: visible;

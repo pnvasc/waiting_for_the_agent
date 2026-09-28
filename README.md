@@ -42,7 +42,7 @@ The elapsed clock starts on the **first advance**, not on page load.
 
 - **`s2`** counts the minutes since my last prompt, live, from `trace.jsonl`.
 - **`s3b`** plays the bread schedule in strict time (about 20 s): my tone on
-  each action, a steady pulse counting out the waits to the end.
+  each action, a steady pulse counting out the waits, a bell when it is done.
   It is read from the list on the slide, so editing the list changes it.
 - **`s4`** plays two sessions together (25 s) on the piece's instruments,
   with a playhead crossing the staves.

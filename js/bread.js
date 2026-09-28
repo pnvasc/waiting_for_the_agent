@@ -3,8 +3,8 @@
 
    The music is read from the slide itself (the <ol class="schedule">): each
    action is my wind tone, on the beat; each wait is counted out by a steady
-   pulse, one beat for every quarter of an hour, until the last wait is over
-   and the bread is done. Nothing is irregular, so everything can be
+   pulse, one beat for every quarter of an hour; when the last wait is over,
+   a bell: the bread is done. Nothing is irregular, so everything can be
    foreseen: that is the point, against the agents' piece on s4.
 
    Edit the schedule on the slide and the music follows. The numbers (tempo,
@@ -53,10 +53,12 @@ export function score(list, cfg) {
     beat += Math.max(1, Math.min(Math.round(s.wait / b.minutes_per_beat), b.longest_wait));
   });
 
-  // The pulse counts every beat, to the end of the last wait.
+  // The pulse counts every beat, and stops when the bell rings.
   for (let k = 0; k <= beat; k += 1) {
     events.push({ beat: k, kind: 'pulse', accent: k % b.beats_per_bar === 0 ? 1 : 0 });
   }
+  const root = pc.voice_roots[1 % pc.voice_roots.length];
+  events.push({ beat, kind: 'bell', voice: 1, midi: pitch(root, pc.summons_degree, pc.scale) });
   return { events, beats: beat, steps };
 }
 
@@ -92,7 +94,7 @@ export class Bread {
     const start = ctx.currentTime + 0.3;
     for (const e of events) this.inst.play(e, start + e.beat * spb);
 
-    // The mark follows the action being sounded, until the last beat.
+    // The mark follows the action being sounded, until the bell.
     const lines = events.filter((e) => e.line !== undefined);
     const end = start + beats * spb;
     const frame = () => {

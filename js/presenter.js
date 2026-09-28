@@ -43,7 +43,7 @@ const ready = fetch('index.html')
   .then((r) => r.text())
   .then((html) => {
     const doc = new DOMParser().parseFromString(html, 'text/html');
-    slides = [...doc.querySelectorAll('#stage .slide')];
+    slides = [...doc.querySelectorAll('#stage .slide:not([hidden])')];   // as the deck
     ui.total.textContent = slides.length;
   })
   .catch((err) => {

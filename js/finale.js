@@ -80,14 +80,11 @@ export class Finale {
     const plan = player.play(piece);
     player.setHeard(this.muted ? SILENT : {});
 
-    // The slide's score, unless it is not drawn yet (the piece can start
-    // before the figure has loaded), or the piece was drawn at random and is
-    // not the one on the slide: then write it out from this plan.
-    let score = this._score();
-    if (!score || this.cfg.choose.at_play === 'random') {
-      const fit = score?.fit ?? matchMedia('(prefers-reduced-motion: reduce)').matches;
-      score = draw(this.slide.querySelector('#region-piece'), plan, this.cfg, { fit });
-    }
+    // Write the score out from exactly what is being played, so the two
+    // cannot disagree (a random draw, the exposition, a config just changed).
+    const old = this._score();
+    const fit = old?.fit ?? matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const score = draw(this.slide.querySelector('#region-piece'), plan, this.cfg, { fit });
     score?.playing(true);
     player.onProgress = (t) => { if (t !== null) score?.seek(t); };
   }

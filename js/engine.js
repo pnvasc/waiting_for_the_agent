@@ -14,6 +14,10 @@
      bind(id, fn)        live value hook — see bind() below
      state               { index, total, stepIndex, stepCount, id }
 
+   A slide with the `hidden` attribute is left out of the deck altogether:
+   it is not shown, counted or reachable, but stays in index.html so taking
+   `hidden` off brings it back.
+
    A slide's step count comes from data-steps on the <section>. Figures listen
    for 'step' and decide for themselves what a given step reveals; the engine
    only counts.
@@ -22,7 +26,7 @@
 export class Deck {
   constructor(stage) {
     this.stage = stage;
-    this.slides = [...stage.querySelectorAll('.slide')];
+    this.slides = [...stage.querySelectorAll('.slide:not([hidden])')];
     this.index = 0;
     this.stepIndex = 0;
 

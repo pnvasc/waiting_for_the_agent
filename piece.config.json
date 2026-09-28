@@ -164,7 +164,7 @@
     }
   },
   "bread": {
-    "_about": "The bread slide (s3b): its schedule, read from the slide itself, played in strict time. Each action is my wind tone on the beat; the waits are counted out by the pulse, to the end of the last one.",
+    "_about": "The bread slide (s3b): its schedule, read from the slide itself, played in strict time. Each action is my wind tone on the beat; the waits are counted out by the pulse; the bell is the bread, done.",
     "bpm": 84,
     "minutes_per_beat": 15,
     "_minutes_per_beat": "real minutes one beat stands for: half an hour is two beats, two hours eight",
