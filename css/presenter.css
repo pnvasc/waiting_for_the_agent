@@ -1,0 +1,129 @@
+/* ===========================================================================
+   Presenter view.
+
+   Deliberately plainer than the deck: it is a working surface, read at arm's
+   length in a dark room, not a designed page. Same paper, same ink, same one
+   red — but denser, and with the notes given the most room, because that is
+   what actually gets read while speaking.
+   =========================================================================== */
+
+html, body {
+  overflow: hidden;
+  height: 100%;
+}
+
+body {
+  display: grid;
+  grid-template-columns: minmax(380px, 40%) 1fr;
+  grid-template-rows: auto 1fr;
+  gap: 0;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+/* --- bar ------------------------------------------------------------------ */
+
+#bar {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: baseline;
+  gap: 28px;
+  padding: 14px 26px;
+  border-bottom: 1px solid var(--ink-3);
+  font-family: var(--mono);
+  font-size: 14px;
+  letter-spacing: .1em;
+  color: var(--ink-2);
+}
+
+#bar #p-elapsed {
+  font-size: 30px;
+  font-weight: 500;
+  letter-spacing: .02em;
+  color: var(--rubric);
+  margin-right: auto;
+}
+
+#bar .of { color: var(--ink-3); }
+
+/* --- previews ------------------------------------------------------------- */
+
+#previews {
+  padding: 22px;
+  border-right: 1px solid var(--ink-3);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.preview-label {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: .18em;
+  font-variant-caps: all-small-caps;
+  color: var(--ink-3);
+  margin: 0 0 8px;
+}
+
+/* Each preview is a real 1600x900 stage, scaled down. Slides are cloned into
+   it unchanged, so what is shown here is exactly what the room sees. */
+.preview {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--ink-3);
+  overflow: hidden;
+  background: var(--paper);
+}
+
+.preview .stage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1600px;
+  height: 900px;
+  transform-origin: top left;
+  pointer-events: none;
+}
+
+.preview .slide {
+  opacity: 1;
+  visibility: visible;
+  transition: none;
+}
+
+.preview [data-step] { opacity: 1; }       /* the presenter sees the finished page */
+.preview.stepped [data-step] { opacity: 0; }
+.preview.stepped [data-step].is-shown { opacity: 1; }
+
+#next-preview { opacity: .62; }
+
+/* --- notes ---------------------------------------------------------------- */
+
+#notes {
+  padding: 30px 40px 60px;
+  overflow-y: auto;
+  font-family: var(--serif);
+  font-size: 27px;
+  line-height: 1.52;
+}
+
+#notes p { margin: 0 0 1em; max-width: 46ch; }
+#notes p:last-child { margin-bottom: 0; }
+#notes strong { font-weight: 600; }
+#notes code { font-family: var(--mono); font-size: .8em; color: var(--ink-2); }
+#notes em { font-style: italic; }
+#notes .none { color: var(--ink-3); font-family: var(--mono); font-size: 18px; }
+
+/* --- offline notice -------------------------------------------------------- */
+
+#p-error {
+  grid-column: 1 / -1;
+  padding: 20px 26px;
+  font-family: var(--mono);
+  font-size: 15px;
+  color: var(--rubric);
+}
+
+#p-error[hidden] { display: none; }

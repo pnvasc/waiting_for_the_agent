@@ -1,0 +1,55 @@
+/* ===========================================================================
+   Which figure belongs to which reserved region.
+
+   One table, imported by both windows: the deck draws from it, and the
+   presenter draws from it into its "now" preview so the preview really is
+   what the room is looking at.
+
+   Every entry is (region id, slide id, data file or null, render function),
+   and every render function has the same shape — render(container, data) —
+   so nothing here needs to know what any figure actually draws.
+   =========================================================================== */
+
+import { load } from '../data.js';
+
+import * as box from './box.js';
+import * as piecescore from './piecescore.js';
+import * as cumulative from './cumulative.js';
+import * as focus from './focus.js';
+import * as history from './history.js';
+import * as polyphony from './polyphony.js';
+import * as bottleneck from './bottleneck.js';
+import * as godot from './godot.js';
+
+export const FIGURES = [
+  { region: 'region-history', slide: 's3c', data: null, render: history.render },
+  { region: 'region-score-scene', slide: 's4', data: 'polyphony', render: polyphony.render },
+  { region: 'region-box', slide: 's5', data: null, render: box.render },
+  {
+    region: 'region-box-mini', slide: 's6', data: null,
+    render: (c, d) => box.render(c, d, { mini: true, only: 'agent' }),
+  },
+  { region: 'region-cumulative-record', slide: 's7', data: 'checks', render: cumulative.render },
+  { region: 'region-bottleneck', slide: 's9', data: null, render: bottleneck.render },
+  { region: 'region-focus-timeline', slide: 's13', data: 'focus', render: focus.render },
+  { region: 'region-godot', slide: 's14b', data: null, render: godot.render },
+  { region: 'region-piece', slide: 's16', data: null, render: piecescore.render },
+];
+
+/* Draws every figure belonging to `slideId` inside `root`, which is the live
+   stage in the deck window and a cloned preview in the presenter. Regions are
+   found by id within `root`, so several copies can coexist on one page. */
+export async function drawFigures(root, slideId) {
+  for (const fig of FIGURES) {
+    if (fig.slide !== slideId) continue;
+    const container = root.querySelector(`#${fig.region}`);
+    // A region may hold its own source markup (the agent slide keeps its
+    // sequence as a list in index.html), so "has children" no longer means
+    // "already drawn". Mark it explicitly, before any await, so two quick
+    // slide changes cannot draw it twice.
+    if (!container || container.dataset.drawn) continue;
+    container.dataset.drawn = '1';
+    const data = fig.data ? await load(fig.data) : null;
+    await fig.render(container, data);            // some renders wait for fonts
+  }
+}

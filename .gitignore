@@ -1,0 +1,22 @@
+# macOS
+.DS_Store
+
+# Per-machine Claude Code settings (the shared hooks in .claude/settings.json are tracked)
+.claude/settings.local.json
+
+# Python
+__pycache__/
+*.pyc
+
+# Local files: the logs, what the deck reads, and the tools that read them.
+# They stay on this machine and are not part of the repository.
+trace.jsonl
+focus.jsonl
+focus.png
+focus-dark.png
+data/
+piece.build.json
+tools/
+trace2poly.py
+trace2score.py
+plot_focus.py

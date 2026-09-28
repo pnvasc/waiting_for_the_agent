@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en" data-theme="day">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Audition</title>
+<link rel="stylesheet" href="css/deck.css">
+<!--
+  Tuning the piece by ear. Not a slide: a workbench.
+
+    space   play / stop          1 2 3   hear only that agent
+    P       hear only my prompts  A       hear everything
+    L       light on / off        M       mute
+    D       night paper
+
+  Every slider changes piece.config.json's 'sound' section in memory, heard
+  on the next note. "Copy config" puts the whole config, as tuned, on the
+  clipboard: paste it over piece.config.json to keep it.
+-->
+<style>
+  html, body { overflow: auto; height: auto; }
+  body {
+    display: grid;
+    grid-template-columns: 400px 1fr;
+    gap: 36px;
+    padding: 32px 40px 60px;
+    font-family: var(--mono);
+    font-size: 14px;
+    color: var(--ink-2);
+  }
+  h1 { font-family: var(--serif); font-weight: 400; font-size: 34px; color: var(--ink); margin: 0 0 6px; }
+  h2 {
+    font-size: 13px; font-weight: 400; letter-spacing: .14em; text-transform: lowercase;
+    font-variant-caps: all-small-caps; color: var(--ink-2); margin: 28px 0 10px;
+    border-top: 1px solid var(--ink-3); padding-top: 10px;
+  }
+  .row { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin: 4px 0; }
+  button, select, input[type=number] {
+    font: inherit; color: var(--ink); background: transparent;
+    border: 1px solid var(--ink-3); padding: 4px 10px; cursor: pointer;
+  }
+  button.off { color: var(--ink-3); text-decoration: line-through; }
+  button.primary { border-color: var(--ink); min-width: 84px; }
+  input[type=number] { width: 72px; padding: 3px 6px; }
+  label.slider { display: grid; grid-template-columns: 150px 1fr 56px; gap: 8px; align-items: center; margin: 2px 0; }
+  label.slider span:last-child { text-align: right; color: var(--ink); }
+  input[type=range] { width: 100%; accent-color: var(--ink); }
+  .note { font-size: 12px; color: var(--ink-3); }
+  #status { color: var(--rubric); }
+  #view {
+    position: relative; aspect-ratio: 16 / 9; width: 100%;
+    border: 1px solid var(--ink-3); overflow: hidden;
+  }
+  #view .lights { position: absolute; inset: 0; width: 100%; height: 100%; }
+  #view svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  #view text { font-family: var(--mono); font-size: 13px; fill: var(--ink-2); }
+  #view .lane { stroke: var(--ink-3); stroke-width: 1; }
+  #view .note { stroke: var(--ink); stroke-width: 2; }
+  #view .tick { stroke: var(--ink-2); stroke-width: 1; }
+  #view .bell { fill: var(--rubric); }
+  #view .prompt { fill: none; stroke: var(--ink); stroke-width: 1.5; }
+  #view .head { stroke: var(--rubric); stroke-width: 1.5; }
+  #info { margin-top: 12px; line-height: 1.7; }
+  #info .time { color: var(--rubric); }
+  textarea { width: 100%; height: 160px; font: 12px var(--mono); color: var(--ink); background: transparent; border: 1px solid var(--ink-3); margin-top: 8px; }
+</style>
+</head>
+<body>
+
+<aside>
+  <h1>Audition</h1>
+  <div id="status">press any key or click to wake the sound</div>
+
+  <h2>play</h2>
+  <div class="row">
+    <button id="play" class="primary">play</button>
+    <select id="at_play"><option value="fixed">data/piece.json</option><option value="random">random from pool</option></select>
+    <label><input type="checkbox" id="expo"> exposition</label>
+  </div>
+
+  <h2>hear</h2>
+  <div class="row" id="parts"></div>
+  <p class="note">1 2 3 · P: hear only that · A: everything · M: mute · L: light</p>
+
+  <h2>time</h2>
+  <div class="row">
+    <select id="mode"><option value="compressed">compressed</option><option value="realtime">real time</option></select>
+    <span>target <input type="number" id="target" step="1"> s</span>
+  </div>
+  <div class="row">
+    <span>offset <input type="number" id="offset" step="10"> s</span>
+    <span>excerpt <input type="number" id="excerpt" step="5"> s</span>
+  </div>
+  <p class="note">time settings apply on the next play</p>
+
+  <h2>sound</h2>
+  <div id="sliders"></div>
+
+  <h2>keep</h2>
+  <div class="row"><button id="copy">copy config</button><span class="note" id="copied"></span></div>
+  <textarea id="dump" hidden></textarea>
+</aside>
+
+<main>
+  <div id="view"></div>
+  <div id="info"></div>
+</main>
+
+<script type="module">
+  import { Piece, loadPiece, schedule } from './js/piece.js';
+
+  const $ = (id) => document.getElementById(id);
+  const cfg = await fetch('piece.config.json', { cache: 'no-store' }).then((r) => r.json());
+  const view = $('view');
+  const player = new Piece(cfg, { lights: view });
+  let piece = await loadPiece(cfg);
+
+  /* --- what is heard ---------------------------------------------------------- */
+
+  const heard = { agents: [true, true, true], bowed: true, ticks: true, bells: true, prompts: true };
+  let muted = false;
+  const parts = [
+    ['agent 1', () => heard.agents[0], (v) => { heard.agents[0] = v; }],
+    ['agent 2', () => heard.agents[1], (v) => { heard.agents[1] = v; }],
+    ['agent 3', () => heard.agents[2], (v) => { heard.agents[2] = v; }],
+    ['bowed', () => heard.bowed, (v) => { heard.bowed = v; }],
+    ['ticks', () => heard.ticks, (v) => { heard.ticks = v; }],
+    ['bells', () => heard.bells, (v) => { heard.bells = v; }],
+    ['prompts', () => heard.prompts, (v) => { heard.prompts = v; }],
+    ['light', () => player.showLight, (v) => { player.showLight = v; }],
+  ];
+  const partButtons = parts.map(([name, get, set]) => {
+    const b = document.createElement('button');
+    b.textContent = name;
+    b.onclick = () => { set(!get()); apply(); };
+    $('parts').appendChild(b);
+    return [b, get];
+  });
+  function apply() {
+    const on = muted ? { agents: [false, false, false], prompts: false } : heard;
+    player.setHeard(on);
+    partButtons.forEach(([b, get]) => b.classList.toggle('off', !get()));
+  }
+  function only(which) {
+    heard.agents = [0, 1, 2].map((i) => which === i);
+    heard.prompts = which === 'prompts';
+    heard.bowed = heard.ticks = heard.bells = true;
+    apply();
+  }
+  apply();
+
+  /* --- time and choice ------------------------------------------------------------ */
+
+  const tc = cfg.time;
+  $('mode').value = tc.mode;
+  $('target').value = tc.target;
+  $('offset').value = tc.offset;
+  $('excerpt').value = tc.excerpt;
+  $('expo').checked = cfg.exposition.on;
+  $('at_play').value = cfg.choose.at_play;
+  for (const id of ['mode', 'target', 'offset', 'excerpt']) {
+    $(id).onchange = () => { tc[id] = id === 'mode' ? $(id).value : Number($(id).value); draw(); };
+  }
+  $('expo').onchange = () => { cfg.exposition.on = $('expo').checked; };
+  $('at_play').onchange = () => { cfg.choose.at_play = $('at_play').value; };
+
+  /* --- a slider for every number in 'sound' ---------------------------------------- */
+
+  function range(key, v) {
+    if (key.startsWith('mix.')) return [-48, 6, 0.5];
+    if (key.startsWith('pan')) return [-1, 1, 0.05];
+    if (key.endsWith('threshold')) return [-24, 0, 0.5];
+    if (/depth|detune/.test(key)) return [0, Math.max(v * 4, 0.02), Math.max(v * 4, 0.02) / 100];
+    if (/send|breath|brightness$/.test(key) && v <= 1) return [0, 1, 0.01];
+    const hi = Math.max(v * 3, 1);
+    return [0, hi, hi / 200];
+  }
+  function sliders(obj, path) {
+    for (const [k, v] of Object.entries(obj)) {
+      if (k.startsWith('_')) continue;
+      const key = path ? `${path}.${k}` : k;
+      if (typeof v === 'object') { sliders(v, key); continue; }
+      if (typeof v !== 'number') continue;
+      const [lo, hi, step] = range(key, v);
+      const label = document.createElement('label');
+      label.className = 'slider';
+      label.innerHTML = `<span>${key}</span><input type="range" min="${lo}" max="${hi}" step="${step}" value="${v}"><span>${v}</span>`;
+      const input = label.querySelector('input');
+      input.oninput = () => {
+        obj[k] = Number(input.value);
+        label.lastChild.textContent = obj[k];
+        apply();                          // levels take effect at once; the rest on the next note
+      };
+      $('sliders').appendChild(label);
+    }
+  }
+  sliders(cfg.sound, '');
+
+  $('copy').onclick = async () => {
+    const text = JSON.stringify(cfg, null, 2);
+    $('dump').hidden = false;
+    $('dump').value = text;
+    try { await navigator.clipboard.writeText(text); $('copied').textContent = 'copied: paste it over piece.config.json'; }
+    catch { $('copied').textContent = 'select the text below and copy it'; }
+  };
+
+  /* --- the view: one lane for me, one per agent, the light behind ------------------ */
+
+  const W = 1600;
+  const H = 900;
+  const lanes = { prompt: 150, 0: 360, 1: 540, 2: 720 };
+  let head = null;
+  let drawnTotal = 1;
+
+  function draw(plan = schedule(piece, cfg), total = plan.played) {
+    view.querySelector('svg')?.remove();
+    const NS = 'http://www.w3.org/2000/svg';
+    const svg = document.createElementNS(NS, 'svg');
+    svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+    svg.setAttribute('preserveAspectRatio', 'none');
+    const add = (name, attrs) => {
+      const n = document.createElementNS(NS, name);
+      for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, v);
+      svg.appendChild(n);
+      return n;
+    };
+    const X = (t) => 90 + (t / total) * (W - 120);
+    [['me', lanes.prompt], ['agent 1', lanes[0]], ['agent 2', lanes[1]], ['agent 3', lanes[2]]].forEach(([name, y]) => {
+      add('line', { x1: 90, x2: W - 30, y1: y, y2: y, class: 'lane' });
+      add('text', { x: 14, y: y + 5 }).textContent = name;
+    });
+    for (const e of plan.events) {
+      const x = X(e.at);
+      if (e.kind === 'prompt') add('circle', { cx: x, cy: lanes.prompt, r: 9, class: 'prompt' });
+      else {
+        const y = lanes[e.voice] - (e.midi % 12) * 4 + 20;
+        if (e.kind === 'note') add('line', { x1: x, x2: Math.max(X(e.at + e.dur), x + 2), y1: y, y2: y, class: 'note' });
+        if (e.kind === 'tick') add('line', { x1: x, x2: x, y1: y - 6, y2: y + 6, class: 'tick' });
+        if (e.kind === 'bell') add('path', { d: `M ${x} ${lanes[e.voice] - 70} l 9 9 l -9 9 l -9 -9 z`, class: 'bell' });
+      }
+    }
+    head = add('line', { x1: 90, x2: 90, y1: 40, y2: H - 40, class: 'head', opacity: 0 });
+    drawnTotal = total;
+    view.appendChild(svg);
+
+    const ratios = plan.ratios.map((r) => `×${Math.round(r)}`).join(' · ');
+    const who = piece.voices.map((v) => v.id || v.session?.slice(0, 8)).join(' · ');
+    $('info').innerHTML = `${who}<br>`
+      + `${tc.mode} · ${total.toFixed(1)} s · agents ${ratios} · light ×${Math.round(plan.lightRatio)} `
+      + `(${plan.pulses.length} pulses)<br><span class="time" id="clock"></span>`;
+  }
+  draw();
+
+  player.onProgress = (t, total) => {
+    if (!head) return;
+    if (t === null) { head.setAttribute('opacity', 0); return; }
+    const x = 90 + (Math.max(t, 0) / drawnTotal) * (W - 120);
+    head.setAttribute('x1', x);
+    head.setAttribute('x2', x);
+    head.setAttribute('opacity', 1);
+    const clock = $('clock');
+    if (clock) clock.textContent = `${Math.max(t, 0).toFixed(1)} s`;
+  };
+  player.on('end', () => { $('play').textContent = 'play'; });
+
+  /* --- play ------------------------------------------------------------------------ */
+
+  async function wake() {
+    if (await player.unlock()) $('status').textContent = '';
+  }
+  addEventListener('pointerdown', wake, { capture: true });
+
+  async function toggle() {
+    await wake();
+    if (player.playing) { player.stop(); $('play').textContent = 'play'; return; }
+    piece = await loadPiece(cfg);
+    const plan = player.play(piece);
+    draw(plan, plan.total);
+    $('play').textContent = 'stop';
+  }
+  $('play').onclick = toggle;
+
+  addEventListener('keydown', async (e) => {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;
+    await wake();
+    const k = e.key.toLowerCase();
+    if (k === ' ') { e.preventDefault(); toggle(); }
+    if (k === '1' || k === '2' || k === '3') only(Number(k) - 1);
+    if (k === 'p') only('prompts');
+    if (k === 'a') { heard.agents = [true, true, true]; Object.assign(heard, { bowed: true, ticks: true, bells: true, prompts: true }); apply(); }
+    if (k === 'm') { muted = !muted; apply(); }
+    if (k === 'l') { player.showLight = !player.showLight; apply(); }
+    if (k === 'd') {
+      const root = document.documentElement;
+      root.dataset.theme = root.dataset.theme === 'night' ? 'day' : 'night';
+    }
+  });
+</script>
+</body>
+</html>
